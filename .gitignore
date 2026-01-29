@@ -1,0 +1,25 @@
+# --- Godot specific ---
+.godot/
+*.import
+export_presets.cfg
+
+# --- C# / .NET specific ---
+bin/
+obj/
+.ca/
+*.sln
+*.csproj
+*.csproj.html
+
+# --- Rider / JetBrains specific ---
+.idea/
+*.user
+*.userosscache
+*.sln.iml
+
+# --- System / OS specific ---
+.DS_Store
+Thumbs.db
+
+# --- Mono/External build artifacts ---
+.mono/
