@@ -8,11 +8,17 @@ public partial class Zombie : CharacterBody2D
 	
 	private int _health = 100;
 	private Node2D _player;
+	private Timer _attackCooldown;
+	private Area2D _hitbox;
 
 	public override void _Ready()
 	{
 		var players = GetTree().GetNodesInGroup("Player");
 		_player = (Node2D)players[0];
+		_attackCooldown = GetNode<Timer>("AttackCooldown");
+		
+		_hitbox = GetNode<Area2D>("Hitbox");
+		_hitbox.BodyEntered += OnHitboxBodyEntered;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -34,6 +40,18 @@ public partial class Zombie : CharacterBody2D
 		{
 			QueueFree();
 			GD.Print("OUCH!!!!!!");
+		}
+	}
+	
+	private void OnHitboxBodyEntered(Node2D body)
+	{
+		GD.Print("Hitbox entered");
+		if (!_attackCooldown.IsStopped())
+			return;
+		if (body.IsInGroup("Player"))
+		{
+			body.Call("TakeDamage", 10);
+			_attackCooldown.Start();
 		}
 	}
 }

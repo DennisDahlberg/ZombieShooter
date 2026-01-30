@@ -14,6 +14,7 @@ public partial class Player : CharacterBody2D
     private Marker2D _gunDirection;
     private Timer _attackCooldown;
     private AnimationPlayer _animation;
+    private int _currentHealth;
     
     public override void _Ready()
     {
@@ -53,5 +54,22 @@ public partial class Player : CharacterBody2D
         EmitSignalPlayerFiredBullet(bullet, _endOfGun.GlobalPosition, directionToMouse);
         _attackCooldown.Start();
         _animation.Play("muzzle_flash");
+    }
+    
+    public void TakeDamage(int amount)
+    {
+        _currentHealth -= amount;
+        GD.Print($"Player Health: {_currentHealth}");
+
+        if (_currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        GD.Print("Game Over!");
+        GetTree().ReloadCurrentScene();
     }
 }
