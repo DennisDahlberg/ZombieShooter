@@ -141,16 +141,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_03owx")
 }
 
-[node name="Zombie" parent="." instance=ExtResource("8_trn2v")]
-position = Vector2(299, -189)
-collision_layer = 4
-collision_mask = 3
-
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("6_lgr22")
 
 [node name="ZombieManager" type="Node2D" parent="."]
-position = Vector2(2, 0)
+position = Vector2(2, -1)
 script = ExtResource("9_03owx")
 ZombieScene = ExtResource("8_trn2v")
 

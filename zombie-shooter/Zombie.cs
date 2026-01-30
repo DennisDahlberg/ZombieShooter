@@ -51,6 +51,9 @@ public partial class Zombie : CharacterBody2D
 		if (body.IsInGroup("Player"))
 		{
 			body.Call("TakeDamage", 10);
+			
+			Vector2 pushDirection = GlobalPosition.DirectionTo(_player.GlobalPosition);
+			body.Call("ApplyKnockback", pushDirection, 500.0f);
 			_attackCooldown.Start();
 		}
 	}

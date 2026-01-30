@@ -15,6 +15,7 @@ public partial class Player : CharacterBody2D
     private Timer _attackCooldown;
     private AnimationPlayer _animation;
     private int _currentHealth = 100;
+    private Vector2 _knockbackVelocity = Vector2.Zero;
     
     public override void _Ready()
     {
@@ -32,7 +33,9 @@ public partial class Player : CharacterBody2D
         LookAt(GetGlobalMousePosition());
 
         Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
-        Velocity = direction * Speed;
+        Velocity = (direction * Speed) + _knockbackVelocity;;
+        
+        _knockbackVelocity = _knockbackVelocity.Lerp(Vector2.Zero, 0.1f);
 
         MoveAndSlide();
 
@@ -54,6 +57,11 @@ public partial class Player : CharacterBody2D
         EmitSignalPlayerFiredBullet(bullet, _endOfGun.GlobalPosition, directionToMouse);
         _attackCooldown.Start();
         _animation.Play("muzzle_flash");
+    }
+
+    public void ApplyKnockback(Vector2 direction, float strength)
+    {
+        _knockbackVelocity = direction * strength;
     }
     
     public void TakeDamage(int amount)
