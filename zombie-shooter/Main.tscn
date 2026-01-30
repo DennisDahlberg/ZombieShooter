@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=16 format=3 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Script" uid="uid://cjp2urggs7cu7" path="res://Main.cs" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dxaeprmk08jew" path="res://BulletManager.cs" id="6_lgr22"]
 [ext_resource type="Texture2D" uid="uid://cdokm3qdasvm1" path="res://tank_assets/Spritesheet/onlyObjects_default.png" id="6_trn2v"]
 [ext_resource type="PackedScene" uid="uid://jnu3xy3gexbr" path="res://Zombie.tscn" id="8_trn2v"]
+[ext_resource type="Script" uid="uid://cpqoyewggy4x" path="res://ZombieManager.cs" id="9_03owx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r0du0"]
 atlas = ExtResource("2_uu6xs")
@@ -140,10 +141,34 @@ libraries = {
 &"": SubResource("AnimationLibrary_03owx")
 }
 
-[node name="BulletManager" type="Node2D" parent="."]
-script = ExtResource("6_lgr22")
-
 [node name="Zombie" parent="." instance=ExtResource("8_trn2v")]
 position = Vector2(299, -189)
 collision_layer = 4
 collision_mask = 3
+
+[node name="BulletManager" type="Node2D" parent="."]
+script = ExtResource("6_lgr22")
+
+[node name="ZombieManager" type="Node2D" parent="."]
+position = Vector2(2, 0)
+script = ExtResource("9_03owx")
+ZombieScene = ExtResource("8_trn2v")
+
+[node name="SpawnTimer" type="Timer" parent="ZombieManager"]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-174, -133)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(208, 64)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-98, 38)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(174, -86)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(26, -172)
