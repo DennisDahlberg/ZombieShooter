@@ -1,10 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=8 format=3 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://dsi1k6h3elwjc" path="res://Player.cs" id="2_r0du0"]
+[ext_resource type="Texture2D" uid="uid://cvhf6ujcrt51u" path="res://main_assets/Spritesheet/spritesheet_characters.png" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://bfolynn5bbtj6" path="res://Bullet.tscn" id="4_cm0pq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0du0"]
+atlas = ExtResource("2_uu6xs")
+region = Rect2(112, 89, 52, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cm0pq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0du0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fos0i"]
+size = Vector2(52, 45)
 
 [node name="Main" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 z_index = -4096
 offset_left = -2569.0
 offset_top = -2269.0
@@ -12,3 +33,21 @@ offset_right = 2431.0
 offset_bottom = 2731.0
 texture = ExtResource("1_glv2v")
 stretch_mode = 1
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("2_r0du0")
+Bullet = ExtResource("4_cm0pq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(1, -0.5)
+scale = Vector2(1.0039063, 1.0039063)
+sprite_frames = SubResource("SpriteFrames_cm0pq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_fos0i")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="EndOfGun" type="Marker2D" parent="Player"]
+position = Vector2(30, 8)
