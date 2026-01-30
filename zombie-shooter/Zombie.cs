@@ -14,8 +14,18 @@ public partial class Zombie : CharacterBody2D
 		var players = GetTree().GetNodesInGroup("Player");
 		_player = (Node2D)players[0];
 	}
-	
-	
+
+	public override void _PhysicsProcess(double delta)
+	{
+		if (_player is null)
+			return;
+		
+		Vector2 direction = GlobalPosition.DirectionTo(_player.GlobalPosition);
+		Velocity = direction * Speed;
+		LookAt(_player.GlobalPosition);
+
+		MoveAndSlide();
+	}
 
 	public void HandleHitByBullet()
 	{

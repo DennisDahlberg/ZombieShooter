@@ -101,7 +101,7 @@ offset_bottom = 2731.0
 texture = ExtResource("1_glv2v")
 stretch_mode = 1
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 script = ExtResource("2_r0du0")
 Bullet = ExtResource("4_cm0pq")
 
@@ -142,4 +142,4 @@ libraries = {
 script = ExtResource("6_lgr22")
 
 [node name="Zombie" parent="." instance=ExtResource("8_trn2v")]
-position = Vector2(158, -43)
+position = Vector2(158, -45)
