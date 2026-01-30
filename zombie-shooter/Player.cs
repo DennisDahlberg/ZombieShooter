@@ -8,13 +8,15 @@ public partial class Player : CharacterBody2D
     [Export] public PackedScene Bullet;
 
     [Signal]
-    public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance);
+    public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
     
     private Marker2D _endOfGun;
-
+    private Marker2D _gunDirection;
+    
     public override void _Ready()
     {
         _endOfGun = GetNode<Marker2D>("EndOfGun");
+        _gunDirection = GetNode<Marker2D>("GunDirection");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -35,12 +37,8 @@ public partial class Player : CharacterBody2D
     private void Shoot()
     {
         var bullet = (Bullet)Bullet.Instantiate();
-        AddChild(bullet);
-        bullet.GlobalPosition = _endOfGun.GlobalPosition;
-        Vector2 target = GetGlobalMousePosition();
-        Vector2 directionToMouse = bullet.GlobalPosition.DirectionTo(target).Normalized();
-        bullet.SetDirection(directionToMouse);
-        EmitSignalPlayerFiredBullet(bullet);
-        GD.Print("Pew!"); 
+        var target = GetGlobalMousePosition();
+        var directionToMouse = _gunDirection.GlobalPosition - _endOfGun.GlobalPosition;
+        EmitSignalPlayerFiredBullet(bullet, _endOfGun.GlobalPosition, directionToMouse);
     }
 }
