@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://jnu3xy3gexbr"]
+
+[ext_resource type="Script" uid="uid://d6tl62ahakdt" path="res://Zombie.cs" id="1_g6hu2"]
+[ext_resource type="Texture2D" uid="uid://cvhf6ujcrt51u" path="res://main_assets/Spritesheet/spritesheet_characters.png" id="1_mauhj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgr22"]
+size = Vector2(35, 46)
+
+[node name="Zombie" type="CharacterBody2D"]
+script = ExtResource("1_g6hu2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mauhj")
+region_enabled = true
+region_rect = Rect2(424.83374, -0.8490753, 36.126373, 44.5935)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_lgr22")

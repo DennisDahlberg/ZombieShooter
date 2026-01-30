@@ -21,4 +21,5 @@ region_rect = Rect2(198.12813, 45.866413, 4.0539246, 10.460117)
 [node name="KillTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[connection signal="body_entered" from="." to="." method="OnBulletBodyEntered"]
 [connection signal="timeout" from="KillTimer" to="." method="OnKillTimerTimeout"]

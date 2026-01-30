@@ -19,6 +19,5 @@ public partial class BulletManager : Node2D
 		AddChild(bullet);
 		bullet.GlobalPosition = position;
 		bullet.SetDirection(direction);
-		GD.Print("Spawned bullet");
 	}
 }

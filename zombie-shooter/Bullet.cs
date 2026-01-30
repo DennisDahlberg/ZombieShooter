@@ -36,4 +36,12 @@ public partial class Bullet : Area2D
 		_killTimer.Stop();
 		QueueFree();
 	}
+
+	public void OnBulletBodyEntered(Node body)
+	{
+		if (!body.HasMethod("HandleHitByBullet"))
+			return;
+		body.Call("HandleHitByBullet");
+		QueueFree();
+	}
 }
