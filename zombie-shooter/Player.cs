@@ -14,7 +14,7 @@ public partial class Player : CharacterBody2D
     private Marker2D _gunDirection;
     private Timer _attackCooldown;
     private AnimationPlayer _animation;
-    private int _currentHealth;
+    private int _currentHealth = 100;
     
     public override void _Ready()
     {

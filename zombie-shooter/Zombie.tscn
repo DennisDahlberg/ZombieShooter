@@ -22,6 +22,7 @@ position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_lgr22")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
