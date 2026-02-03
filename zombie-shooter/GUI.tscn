@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba3fllv2b6nyj"]
+[gd_scene load_steps=4 format=3 uid="uid://ba3fllv2b6nyj"]
+
+[ext_resource type="Script" uid="uid://b8r04taekbxwx" path="res://Gui.cs" id="1_q7530"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctqmo"]
 bg_color = Color(0.12904489, 0.12961754, 0.13053864, 1)
@@ -25,6 +27,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_q7530")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
