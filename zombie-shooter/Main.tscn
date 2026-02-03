@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=17 format=3 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Script" uid="uid://cjp2urggs7cu7" path="res://Main.cs" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cdokm3qdasvm1" path="res://tank_assets/Spritesheet/onlyObjects_default.png" id="6_trn2v"]
 [ext_resource type="PackedScene" uid="uid://jnu3xy3gexbr" path="res://Zombie.tscn" id="8_trn2v"]
 [ext_resource type="Script" uid="uid://cpqoyewggy4x" path="res://ZombieManager.cs" id="9_03owx"]
+[ext_resource type="PackedScene" uid="uid://ba3fllv2b6nyj" path="res://GUI.tscn" id="10_wkp8b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r0du0"]
 atlas = ExtResource("2_uu6xs")
@@ -167,3 +168,5 @@ position = Vector2(174, -86)
 
 [node name="Marker2D5" type="Marker2D" parent="SpawnPoints"]
 position = Vector2(26, -172)
+
+[node name="GUI" parent="." instance=ExtResource("10_wkp8b")]
