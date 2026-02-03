@@ -20,8 +20,7 @@ public partial class Gui : CanvasLayer
 	public void SetHealth(int newHealth)
 	{
 		var tween = CreateTween();
-			
-		_healthBar.Value = newHealth;
+		tween.TweenProperty(_healthBar, "value", newHealth, 0.4);
 	}
 
 	public void SetMaxAmmo(int newMaxAmmo)
