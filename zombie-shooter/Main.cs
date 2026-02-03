@@ -6,15 +6,16 @@ public partial class Main : Node2D
 {
 	private BulletManager _bulletManager;
 	private Player _player;
-	private CanvasLayer _gui;
+	private Gui _gui;
 	
 	public override void _Ready()
 	{
 		_bulletManager = GetNode<BulletManager>("BulletManager");
 		_player = GetNode<Player>("Player");
-		_gui = GetNode<CanvasLayer>("GUI");
+		_gui = GetNode<Gui>("GUI");
 
 		_player.PlayerFiredBullet += _bulletManager.HandleBulletSpawned;
+		_player.PlayerHealthChanged += _gui.SetHealth;
 	}
 
 	public override void _Process(double delta)

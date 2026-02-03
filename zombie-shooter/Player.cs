@@ -9,6 +9,9 @@ public partial class Player : CharacterBody2D
 
     [Signal]
     public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
+
+    [Signal]
+    public delegate void PlayerHealthChangedEventHandler(int newHealth);
     
     private Marker2D _endOfGun;
     private Marker2D _gunDirection;
@@ -68,6 +71,8 @@ public partial class Player : CharacterBody2D
     {
         _currentHealth -= amount;
         GD.Print($"Player Health: {_currentHealth}");
+        
+        EmitSignalPlayerHealthChanged(_currentHealth);
 
         if (_currentHealth <= 0)
         {

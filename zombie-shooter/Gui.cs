@@ -13,11 +13,15 @@ public partial class Gui : CanvasLayer
 		_healthBar = GetNode<ProgressBar>("MarginContainer/Rows/BottomRow/HealthSection/HealthBar");
 		_currentAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/CurrentAmmo");
 		_maxAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/MaxAmmo");
+
+		_healthBar.Value = 100;
 	}
 
 	public void SetHealth(int newHealth)
 	{
-		
+		var tween = CreateTween();
+			
+		_healthBar.Value = newHealth;
 	}
 
 	public void SetMaxAmmo(int newMaxAmmo)
