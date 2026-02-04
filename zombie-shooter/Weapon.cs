@@ -35,6 +35,10 @@ public partial class Weapon : Node2D
 		{
 			return;
 		}
+
+		if (_animation.IsPlaying())
+			return;
+		
 		var bullet = (Bullet)Bullet.Instantiate();
 		var target = GetGlobalMousePosition();
 		var directionToMouse = _gunDirection.GlobalPosition - _endOfGun.GlobalPosition;
