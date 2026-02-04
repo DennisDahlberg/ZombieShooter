@@ -19,13 +19,11 @@ public partial class Player : CharacterBody2D
     private AnimationPlayer _animation;
     private int _currentHealth = 100;
     private Vector2 _knockbackVelocity = Vector2.Zero;
+    private Weapon _weapon;
     
     public override void _Ready()
     {
-        _endOfGun = GetNode<Marker2D>("EndOfGun");
-        _gunDirection = GetNode<Marker2D>("GunDirection");
-        _attackCooldown = GetNode<Timer>("AttackCooldown");
-        _animation = GetNode<AnimationPlayer>("AnimationPlayer");
+        _weapon = GetNode<Weapon>("Weapon");
         
         _animation.Stop();
         GetNode<Sprite2D>("MuzzleFlash").Hide();
@@ -44,22 +42,8 @@ public partial class Player : CharacterBody2D
 
         if (Input.IsActionJustPressed("shoot"))
         {
-            Shoot();
+            _weapon.Shoot();
         }
-    }
-
-    private void Shoot()
-    {
-        if (!_attackCooldown.IsStopped())
-        {
-            return;
-        }
-        var bullet = (Bullet)Bullet.Instantiate();
-        var target = GetGlobalMousePosition();
-        var directionToMouse = _gunDirection.GlobalPosition - _endOfGun.GlobalPosition;
-        EmitSignalPlayerFiredBullet(bullet, _endOfGun.GlobalPosition, directionToMouse);
-        _attackCooldown.Start();
-        _animation.Play("muzzle_flash");
     }
 
     public void ApplyKnockback(Vector2 direction, float strength)

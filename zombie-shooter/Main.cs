@@ -6,6 +6,7 @@ public partial class Main : Node2D
 {
 	private BulletManager _bulletManager;
 	private Player _player;
+	private Weapon _weapon;
 	private Gui _gui;
 	
 	public override void _Ready()
@@ -13,8 +14,9 @@ public partial class Main : Node2D
 		_bulletManager = GetNode<BulletManager>("BulletManager");
 		_player = GetNode<Player>("Player");
 		_gui = GetNode<Gui>("GUI");
+		_weapon = GetNode<Weapon>("Player/Weapon");
 
-		_player.PlayerFiredBullet += _bulletManager.HandleBulletSpawned;
+		_weapon.PlayerFiredBullet += _bulletManager.HandleBulletSpawned;
 		_player.PlayerHealthChanged += _gui.SetHealth;
 	}
 
