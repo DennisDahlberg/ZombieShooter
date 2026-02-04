@@ -61,11 +61,16 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="HealthSection" type="CenterContainer" parent="MarginContainer/Rows/BottomRow"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows/BottomRow"]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="HealthBar" type="ProgressBar" parent="MarginContainer/Rows/BottomRow/HealthSection"]
+[node name="BottomLeftSection" type="VBoxContainer" parent="MarginContainer/Rows/BottomRow/CenterContainer"]
+layout_mode = 2
+
+[node name="Top" type="VBoxContainer" parent="MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection"]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Top"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 mouse_filter = 2
@@ -73,6 +78,19 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ctqmo")
 theme_override_styles/fill = SubResource("StyleBoxFlat_q7530")
 value = 50.0
 show_percentage = false
+
+[node name="Bottom" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection"]
+layout_mode = 2
+
+[node name="Dollars" type="Label" parent="MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Bottom"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "$"
+
+[node name="PlayerMoney" type="Label" parent="MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Bottom"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "1000"
 
 [node name="AmmoSection" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow"]
 layout_mode = 2
