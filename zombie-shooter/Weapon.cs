@@ -7,6 +7,9 @@ public partial class Weapon : Node2D
 	[Signal]
 	public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
 	
+	[Signal]
+	public delegate void AmmoAmountChangedEventHandler(int newAmmo);
+	
 	[Export] public PackedScene Bullet;
 	[Export] public int MaxAmmo = 5;
 
@@ -46,6 +49,7 @@ public partial class Weapon : Node2D
 		_attackCooldown.Start();
 		_animation.Play("muzzle_flash");
 		_currentAmmo--;
+		EmitSignalAmmoAmountChanged(_currentAmmo);
 		GD.Print(_currentAmmo);
 	}
 
