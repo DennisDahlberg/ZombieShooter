@@ -41,11 +41,17 @@ public partial class Weapon : Node2D
 	
 	public void Shoot()
 	{
-		if (!_attackCooldown.IsStopped() || Bullet == null || _currentAmmo <= 0)
+		if (!_attackCooldown.IsStopped() || Bullet == null)
 			return;
-
+		
 		if (_animation.IsPlaying())
 			return;
+		
+		if (_currentAmmo <= 0)
+		{
+			Reload();
+			return;
+		}
 		
 		var bullet = (Bullet)Bullet.Instantiate();
 		var target = GetGlobalMousePosition();
@@ -55,7 +61,6 @@ public partial class Weapon : Node2D
 		_animation.Play("muzzle_flash");
 		_currentAmmo--;
 		EmitSignalAmmoAmountChanged(_currentAmmo);
-		GD.Print(_currentAmmo);
 	}
 
 	public void Reload()
