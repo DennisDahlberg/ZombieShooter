@@ -7,14 +7,17 @@ public partial class Gui : CanvasLayer
 	private ProgressBar _healthBar;
 	private Label _currentAmmo;
 	private Label _maxAmmo;
+	private Label _playerMoney;
 
 	public override void _Ready()
 	{
-		_healthBar = GetNode<ProgressBar>("MarginContainer/Rows/BottomRow/HealthSection/HealthBar");
+		_healthBar = GetNode<ProgressBar>("MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Top/HealthBar");
 		_currentAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/CurrentAmmo");
 		_maxAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/MaxAmmo");
+		_playerMoney = GetNode<Label>("MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Bottom/PlayerMoney");
 
 		_healthBar.Value = 100;
+		_playerMoney.Text = "500";
 	}
 
 	public void SetHealth(int newHealth)
