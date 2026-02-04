@@ -48,11 +48,11 @@ public partial class Gui : CanvasLayer
 
 	public void SetMaxAmmo(int newMaxAmmo)
 	{
-		
+		_maxAmmo.Text = newMaxAmmo.ToString();
 	}
 
 	public void SetCurrentAmmo(int newCurrentAmmo)
 	{
-		
+		_currentAmmo.Text = newCurrentAmmo.ToString();
 	}
 }

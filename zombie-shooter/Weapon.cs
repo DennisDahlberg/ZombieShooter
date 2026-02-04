@@ -10,6 +10,9 @@ public partial class Weapon : Node2D
 	[Signal]
 	public delegate void AmmoAmountChangedEventHandler(int newAmmo);
 	
+	[Signal]
+	public delegate void MaxAmmoAmountChangedEventHandler(int newAmmo);
+	
 	[Export] public PackedScene Bullet;
 	[Export] public int MaxAmmo = 5;
 
@@ -20,14 +23,18 @@ public partial class Weapon : Node2D
 	private Timer _attackCooldown;
 	private AnimationPlayer _animation;
 	
+	public int GetCurrentAmmo() => _currentAmmo;
+	public int GetMaxAmmo() => MaxAmmo;
+	
 	public override void _Ready()
 	{
 		_endOfGun = GetNode<Marker2D>("EndOfGun");
 		_gunDirection = GetNode<Marker2D>("GunDirection");
 		_attackCooldown = GetNode<Timer>("AttackCooldown");
 		_animation = GetNode<AnimationPlayer>("AnimationPlayer");
+		
 		_currentAmmo = MaxAmmo;
-        
+		
 		_animation.Stop();
 		GetNode<Sprite2D>("MuzzleFlash").Hide();
 	}
