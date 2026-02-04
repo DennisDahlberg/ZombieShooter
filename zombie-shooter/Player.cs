@@ -41,9 +41,10 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
 
         if (Input.IsActionJustPressed("shoot"))
-        {
             _weapon.Shoot();
-        }
+        
+        if (Input.IsActionJustPressed("reload"))
+            _weapon.Reload();
     }
 
     public void ApplyKnockback(Vector2 direction, float strength)
