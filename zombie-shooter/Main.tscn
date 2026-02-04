@@ -13,10 +13,10 @@ script = ExtResource("1_3dxm6")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -4096
-offset_left = -2569.0
-offset_top = -2269.0
-offset_right = 2431.0
-offset_bottom = 2731.0
+offset_left = -3933.0
+offset_top = -3640.0
+offset_right = 3567.0
+offset_bottom = 3860.0
 texture = ExtResource("1_glv2v")
 stretch_mode = 1
 

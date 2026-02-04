@@ -42,9 +42,7 @@ public partial class Weapon : Node2D
 	public void Shoot()
 	{
 		if (!_attackCooldown.IsStopped() || Bullet == null || _currentAmmo <= 0)
-		{
 			return;
-		}
 
 		if (_animation.IsPlaying())
 			return;
@@ -68,7 +66,7 @@ public partial class Weapon : Node2D
 	public void StopReload()
 	{
 		_currentAmmo = MaxAmmo;
-		GD.Print(_currentAmmo);
+		EmitSignalAmmoAmountChanged(_currentAmmo);
 	}
 
 }
