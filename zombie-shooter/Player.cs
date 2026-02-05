@@ -67,6 +67,18 @@ public partial class Player : CharacterBody2D
         }
     }
 
+    public void IncreaseMoneyAmount(int amount)
+    {
+        _playerMoney += amount;
+        GD.Print($"Player money: {_playerMoney}");
+    }
+
+    public void DecreaseMoneyAmount(int amount)
+    {
+        _playerMoney -= amount;
+        GD.Print($"Player money: {_playerMoney}");
+    }
+
     private void Die()
     {
         GD.Print("Game Over!");
