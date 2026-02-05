@@ -4,6 +4,8 @@ using System;
 namespace ZombieShooter;
 public partial class Door : StaticBody2D
 {
+	[Signal] public delegate void BuyDoorEventHandler(int doorCost);
+	
 	[Export] public int Cost = 1000;
 	private Area2D _buyArea;
 	private bool _playerInRange = false;
@@ -44,7 +46,14 @@ public partial class Door : StaticBody2D
 
 	private void TryPurchase()
 	{
-		GD.Print("Attempting to buy door...");
-		QueueFree(); 
+		if (GameManager.Instance.SpendMoney(Cost))
+		{
+			GD.Print("Door opened!!!");
+			QueueFree();
+		}
+		else
+		{
+			GD.Print("Door unable to purchase money.");
+		}
 	}
 }

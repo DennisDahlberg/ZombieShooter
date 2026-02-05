@@ -8,6 +8,7 @@ public partial class Gui : CanvasLayer
 	private Label _currentAmmo;
 	private Label _maxAmmo;
 	private Label _playerMoney;
+	private Label _actionLabel;
 
 	public override void _Ready()
 	{
@@ -15,6 +16,7 @@ public partial class Gui : CanvasLayer
 		_currentAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/CurrentAmmo");
 		_maxAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/MaxAmmo");
 		_playerMoney = GetNode<Label>("MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Bottom/PlayerMoney");
+		_actionLabel = GetNode<Label>("MarginContainer/Rows/MiddleRow/MiddleTop/CenterContainer/ActionLabel");
 
 		_healthBar.Value = 100;
 		_playerMoney.Text = "500";
@@ -62,5 +64,10 @@ public partial class Gui : CanvasLayer
 	public void SetCurrentMoneyAmount(int newMoneyAmount)
 	{
 		_playerMoney.Text = newMoneyAmount.ToString();
+	}
+	
+	public void SetActionLabel(string newActionLabel)
+	{
+		_actionLabel.Text = newActionLabel;
 	}
 }

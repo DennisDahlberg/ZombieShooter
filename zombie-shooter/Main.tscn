@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=15 format=4 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Script" uid="uid://cjp2urggs7cu7" path="res://Main.cs" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://nxk5uag1nmtc" path="res://Player.tscn" id="3_lgr22"]
+[ext_resource type="Script" uid="uid://bevt5winlth3v" path="res://GameManager.cs" id="5_wkp8b"]
 [ext_resource type="Script" uid="uid://dxaeprmk08jew" path="res://BulletManager.cs" id="6_lgr22"]
 [ext_resource type="Texture2D" uid="uid://bstam8p8o1imq" path="res://main_assets/Tilesheet/tilesheet_complete.png" id="8_03owx"]
 [ext_resource type="PackedScene" uid="uid://jnu3xy3gexbr" path="res://Zombie.tscn" id="8_trn2v"]
@@ -1147,6 +1148,9 @@ position = Vector2(-675, 604)
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("6_lgr22")
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("5_wkp8b")
 
 [node name="ZombieManager" type="Node2D" parent="."]
 position = Vector2(2, -1)
