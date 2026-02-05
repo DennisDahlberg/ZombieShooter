@@ -46,7 +46,10 @@ public partial class ZombieManager : Node2D
 		var zombie = (Zombie)ZombieScene.Instantiate();
 		zombie.GlobalPosition = spawnPos;
         
-		zombie.Speed += (_currentWave * 5); 
+		zombie.Speed += (_currentWave * 5);
+
+		zombie.Died += OnZombieDied;
+		zombie.HitByBullet += OnZombieHit;
 
 		AddChild(zombie);
 	}
@@ -56,5 +59,25 @@ public partial class ZombieManager : Node2D
 		_currentWave++;
 		_difficultyMultiplier += 0.2f;
 		_spawnTimer.WaitTime = Math.Max(0.5f, BaseSpawnDelay - (_currentWave * 0.1f));
+	}
+	
+	
+	
+	private void OnZombieHit(int moneyValue)
+	{
+		var player = GetTree().GetFirstNodeInGroup("Player");
+		if (player != null)
+		{
+			player.Call("IncreaseMoneyAmount", moneyValue);
+		}
+	}
+	
+	private void OnZombieDied(int moneyValue)
+	{
+		var player = GetTree().GetFirstNodeInGroup("Player");
+		if (player != null)
+		{
+			player.Call("IncreaseMoneyAmount", moneyValue);
+		}
 	}
 }

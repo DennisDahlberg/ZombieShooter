@@ -6,12 +6,12 @@ public partial class Player : CharacterBody2D
 {
     [Export] public float Speed = 400.0f;
     [Export] public PackedScene Bullet;
-
-    [Signal]
-    public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
-
-    [Signal]
-    public delegate void PlayerHealthChangedEventHandler(int newHealth);
+    
+    [Signal] public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
+    [Signal] public delegate void PlayerHealthChangedEventHandler(int newHealth);
+    [Signal] public delegate void PlayerMoneyChangedEventHandler(int newMoney);
+    
+    
     
     private Marker2D _endOfGun;
     private Marker2D _gunDirection;
@@ -70,12 +70,14 @@ public partial class Player : CharacterBody2D
     public void IncreaseMoneyAmount(int amount)
     {
         _playerMoney += amount;
+        EmitSignalPlayerMoneyChanged(_playerMoney);
         GD.Print($"Player money: {_playerMoney}");
     }
 
     public void DecreaseMoneyAmount(int amount)
     {
         _playerMoney -= amount;
+        EmitSignalPlayerMoneyChanged(_playerMoney);
         GD.Print($"Player money: {_playerMoney}");
     }
 
