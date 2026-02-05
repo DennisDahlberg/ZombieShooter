@@ -58,4 +58,9 @@ public partial class Gui : CanvasLayer
 	{
 		_currentAmmo.Text = newCurrentAmmo.ToString();
 	}
+
+	public void SetCurrentMoneyAmount(int newMoneyAmount)
+	{
+		_playerMoney.Text = newMoneyAmount.ToString();
+	}
 }

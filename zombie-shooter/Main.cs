@@ -19,7 +19,9 @@ public partial class Main : Node2D
 		_weapon.AmmoAmountChanged += _gui.SetCurrentAmmo;
 		_weapon.MaxAmmoAmountChanged += _gui.SetMaxAmmo;
 		_weapon.PlayerFiredBullet += _bulletManager.HandleBulletSpawned;
+		
 		_player.PlayerHealthChanged += _gui.SetHealth;
+		_player.PlayerMoneyChanged += _gui.SetCurrentMoneyAmount;
 		
 		_gui.SetCurrentAmmo(_weapon.GetCurrentAmmo());
 		_gui.SetMaxAmmo(_weapon.GetMaxAmmo());

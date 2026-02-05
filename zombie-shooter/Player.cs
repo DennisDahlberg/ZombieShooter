@@ -71,14 +71,12 @@ public partial class Player : CharacterBody2D
     {
         _playerMoney += amount;
         EmitSignalPlayerMoneyChanged(_playerMoney);
-        GD.Print($"Player money: {_playerMoney}");
     }
 
     public void DecreaseMoneyAmount(int amount)
     {
         _playerMoney -= amount;
         EmitSignalPlayerMoneyChanged(_playerMoney);
-        GD.Print($"Player money: {_playerMoney}");
     }
 
     private void Die()
