@@ -50,11 +50,27 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="MiddleRow" type="HBoxContainer" parent="MarginContainer/Rows"]
+[node name="MiddleRow" type="VBoxContainer" parent="MarginContainer/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
-mouse_filter = 2
+size_flags_stretch_ratio = 3.0
+
+[node name="MiddleTop" type="HBoxContainer" parent="MarginContainer/Rows/MiddleRow"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows/MiddleRow/MiddleTop"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionLabel" type="Label" parent="MarginContainer/Rows/MiddleRow/MiddleTop/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Press F to buy door [Cost: 1000]"
+
+[node name="MiddleBottom" type="HBoxContainer" parent="MarginContainer/Rows/MiddleRow"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="BottomRow" type="HBoxContainer" parent="MarginContainer/Rows"]
 layout_mode = 2
