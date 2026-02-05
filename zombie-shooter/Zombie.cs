@@ -4,6 +4,9 @@ using System;
 namespace ZombieShooter;
 public partial class Zombie : CharacterBody2D
 {
+	[Signal] public delegate void HitByBulletEventHandler(int moneyAmount);
+	[Signal] public delegate void DiedEventHandler(int moneyAmount);
+	
 	[Export] public float Speed = 200.0f;
 	
 	private int _health = 100;
@@ -38,9 +41,11 @@ public partial class Zombie : CharacterBody2D
 		_health -= 20;
 		if (_health <= 0)
 		{
+			EmitSignalDied(50);
 			QueueFree();
 			GD.Print("OUCH!!!!!!");
 		}
+		EmitSignalHitByBullet(10);
 	}
 	
 	private void OnHitboxBodyEntered(Node2D body)
