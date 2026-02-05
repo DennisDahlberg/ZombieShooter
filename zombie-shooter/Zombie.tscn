@@ -10,6 +10,8 @@ size = Vector2(35, 46)
 size = Vector2(39, 50)
 
 [node name="Zombie" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_g6hu2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,7 +20,7 @@ region_enabled = true
 region_rect = Rect2(424.83374, -0.8490753, 36.126373, 44.5935)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -1)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_lgr22")
 
 [node name="AttackCooldown" type="Timer" parent="."]
@@ -31,3 +33,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_g6hu2")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
