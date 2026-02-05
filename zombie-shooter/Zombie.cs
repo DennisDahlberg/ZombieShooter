@@ -35,14 +35,12 @@ public partial class Zombie : CharacterBody2D
 		Vector2 direction = GlobalPosition.DirectionTo(nextPathPosition);
 		Velocity = direction * Speed;
 		
-		LookAt(_player.GlobalPosition);
-		MoveAndSlide();
+		if (Velocity.Length() > 0)
+		{
+			Rotation = Velocity.Angle(); 
+		}
 		
-		// Vector2 direction = GlobalPosition.DirectionTo(_player.GlobalPosition);
-		// Velocity = direction * Speed;
-		// LookAt(_player.GlobalPosition);
-		//
-		// MoveAndSlide();
+		MoveAndSlide();
 	}
 
 	public void HandleHitByBullet()
