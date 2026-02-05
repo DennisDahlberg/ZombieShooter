@@ -70,4 +70,5 @@ public partial class Gui : CanvasLayer
 	{
 		_actionLabel.Text = newActionLabel;
 	}
+	
 }

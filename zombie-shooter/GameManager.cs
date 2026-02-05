@@ -7,6 +7,7 @@ public partial class GameManager : Node2D
 	public static GameManager Instance { get; private set; }
 
 	[Signal] public delegate void MoneyChangedEventHandler(int currentMoney);
+	[Signal] public delegate void ActionLabelChangedEventHandler(string label);
 
 	public int Money { get; private set; } = 500; 
 
@@ -30,5 +31,10 @@ public partial class GameManager : Node2D
 			return true;
 		}
 		return false;
+	}
+
+	public void UpdateActionLabel(string label)
+	{
+		EmitSignalActionLabelChanged(label);
 	}
 }

@@ -23,6 +23,7 @@ public partial class Main : Node2D
 		_player.PlayerHealthChanged += _gui.SetHealth;
 
 		GameManager.Instance.MoneyChanged += _gui.SetCurrentMoneyAmount;
+		GameManager.Instance.ActionLabelChanged += _gui.SetActionLabel;
 		
 		_gui.SetCurrentAmmo(_weapon.GetCurrentAmmo());
 		_gui.SetMaxAmmo(_weapon.GetMaxAmmo());

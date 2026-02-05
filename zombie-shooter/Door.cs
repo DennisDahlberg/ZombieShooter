@@ -4,7 +4,7 @@ using System;
 namespace ZombieShooter;
 public partial class Door : StaticBody2D
 {
-	[Signal] public delegate void BuyDoorEventHandler(int doorCost);
+	[Signal] public delegate void BuyAreaExitedEventHandler();
 	
 	[Export] public int Cost = 1000;
 	private Area2D _buyArea;
@@ -23,6 +23,7 @@ public partial class Door : StaticBody2D
 		if (body.IsInGroup("Player"))
 		{
 			GD.Print("Player in range. Press F to buy for " + Cost);
+			GameManager.Instance.UpdateActionLabel("Press F to buy door [" + Cost + "]");	
 			_playerInRange = true;
 		}
 	}
@@ -32,6 +33,7 @@ public partial class Door : StaticBody2D
 		if (body.IsInGroup("Player"))
 		{
 			GD.Print("Player left range.");
+			GameManager.Instance.UpdateActionLabel("");	
 			_playerInRange = false;
 		}
 	}
@@ -49,6 +51,7 @@ public partial class Door : StaticBody2D
 		if (GameManager.Instance.SpendMoney(Cost))
 		{
 			GD.Print("Door opened!!!");
+			GameManager.Instance.UpdateActionLabel("");
 			QueueFree();
 		}
 		else

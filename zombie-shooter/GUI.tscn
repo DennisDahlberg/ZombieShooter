@@ -66,7 +66,6 @@ size_flags_horizontal = 3
 [node name="ActionLabel" type="Label" parent="MarginContainer/Rows/MiddleRow/MiddleTop/CenterContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Press F to buy door [Cost: 1000]"
 
 [node name="MiddleBottom" type="HBoxContainer" parent="MarginContainer/Rows/MiddleRow"]
 layout_mode = 2
