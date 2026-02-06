@@ -1705,19 +1705,19 @@ ZombieScene = ExtResource("8_trn2v")
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(-43, 710)
+position = Vector2(-2980, 2170)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(339, 907)
+position = Vector2(-306, 2268)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(33, 881)
+position = Vector2(1887, 1490)
 
 [node name="Marker2D4" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(305, 757)
+position = Vector2(-2596, -685)
 
 [node name="Marker2D5" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(157, 671)
+position = Vector2(873, -977)
 
 [node name="GUI" parent="." instance=ExtResource("10_wkp8b")]
 
@@ -1739,10 +1739,10 @@ tile_set = SubResource("TileSet_20pc6")
 
 [node name="Background" type="TextureRect" parent="World/NavigationRegion2D"]
 z_index = -4096
-offset_left = -4019.0
-offset_top = -3180.0
-offset_right = 3481.0
-offset_bottom = 4320.0
+offset_left = -3965.0
+offset_top = -2723.0
+offset_right = 3535.0
+offset_bottom = 4777.0
 texture = ExtResource("1_glv2v")
 stretch_mode = 1
 
@@ -1751,6 +1751,13 @@ position = Vector2(-76, -36)
 tile_map_data = PackedByteArray("AADv/wkAAAAEABAAAADv/wgAAAAEABAAAAD1/w4AAAAFABEAAAD2/w4AAAAFABEAAAD3/w4AAAAFABEAAAD4/w4AAAAFABEAAAD1////AAAEABAAAAD1/wAAAAAEABAAAAD6//v/AAAEABEAAAA=")
 tile_set = SubResource("TileSet_5vvyt")
 
-[node name="Door" parent="." instance=ExtResource("9_wkp8b")]
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("9_wkp8b")]
 position = Vector2(-364, 252)
 collision_mask = 6
+Cost = 750
+
+[node name="Door2" parent="Doors" instance=ExtResource("9_wkp8b")]
+position = Vector2(-172, -4)
+rotation = 1.5707964
