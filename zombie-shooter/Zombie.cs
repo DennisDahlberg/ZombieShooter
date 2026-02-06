@@ -41,6 +41,11 @@ public partial class Zombie : CharacterBody2D
 		}
 		
 		MoveAndSlide();
+		
+		if (_attackCooldown.IsStopped())
+		{
+			CheckForBite();
+		}
 	}
 
 	public void HandleHitByBullet()
@@ -55,18 +60,35 @@ public partial class Zombie : CharacterBody2D
 		GameManager.Instance.AddMoney(10);
 	}
 	
+	private void CheckForBite()
+	{
+		var bodies = _hitbox.GetOverlappingBodies();
+		foreach (Node2D body in bodies)
+		{
+			if (body.IsInGroup("Player"))
+			{
+				PerformAttack(body);
+				break;
+			}
+		}
+	}
+	
+	private void PerformAttack(Node2D body)
+	{
+		GD.Print("Biting the player!");
+		body.Call("TakeDamage", 10);
+    
+		Vector2 pushDirection = GlobalPosition.DirectionTo(body.GlobalPosition);
+		body.Call("ApplyKnockback", pushDirection, 500.0f);
+    
+		_attackCooldown.Start();
+	}
+	
 	private void OnHitboxBodyEntered(Node2D body)
 	{
-		GD.Print("Hitbox entered");
-		if (!_attackCooldown.IsStopped())
-			return;
-		if (body.IsInGroup("Player"))
+		if (_attackCooldown.IsStopped() && body.IsInGroup("Player"))
 		{
-			body.Call("TakeDamage", 10);
-			
-			Vector2 pushDirection = GlobalPosition.DirectionTo(_player.GlobalPosition);
-			body.Call("ApplyKnockback", pushDirection, 500.0f);
-			_attackCooldown.Start();
+			PerformAttack(body);
 		}
 	}
 }
