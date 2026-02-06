@@ -4,7 +4,7 @@ using System;
 namespace ZombieShooter;
 public partial class Bullet : Area2D
 {
-	[Export] public float Speed = 15f;
+	[Export] public float Speed = 600f;
 	
 	private Vector2 _direction = Vector2.Zero;
 	private Timer _killTimer;
@@ -19,9 +19,7 @@ public partial class Bullet : Area2D
 	{
 		if (_direction != Vector2.Zero)
 		{
-			var velocity = _direction * Speed;
-			
-			GlobalPosition += velocity;
+			GlobalPosition += _direction * Speed * (float)delta;
 		}
 	}
 
@@ -39,9 +37,9 @@ public partial class Bullet : Area2D
 
 	public void OnBulletBodyEntered(Node body)
 	{
-		if (!body.HasMethod("HandleHitByBullet"))
-			return;
-		body.Call("HandleHitByBullet");
+		if (body.HasMethod("HandleHitByBullet"))
+			body.Call("HandleHitByBullet");
+		
 		QueueFree();
 	}
 }
