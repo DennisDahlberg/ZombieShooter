@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=20 format=4 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Script" uid="uid://cjp2urggs7cu7" path="res://Main.cs" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cpqoyewggy4x" path="res://ZombieManager.cs" id="9_03owx"]
 [ext_resource type="PackedScene" uid="uid://dv8hj0dejr1cn" path="res://Door.tscn" id="9_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://ba3fllv2b6nyj" path="res://GUI.tscn" id="10_wkp8b"]
+[ext_resource type="Texture2D" uid="uid://bqhrttmepe4n3" path="res://main_assets/perks/perk_machines_tp.png" id="11_20pc6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trn2v"]
 texture = ExtResource("8_03owx")
@@ -1683,6 +1684,9 @@ physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_20pc6")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vvyt"]
+size = Vector2(98, 101)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3dxm6")
 
@@ -1761,3 +1765,17 @@ Cost = 750
 [node name="Door2" parent="Doors" instance=ExtResource("9_wkp8b")]
 position = Vector2(-172, -4)
 rotation = 1.5707964
+
+[node name="PerkMachine" type="StaticBody2D" parent="."]
+position = Vector2(-668, -244)
+
+[node name="Sprite" type="Sprite2D" parent="PerkMachine"]
+position = Vector2(1.1920929e-07, -2.3841858e-07)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_20pc6")
+region_enabled = true
+region_rect = Rect2(193.47171, 999.8308, 482.3077, 495.1692)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachine"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5vvyt")
