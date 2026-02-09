@@ -20,8 +20,15 @@ public partial class Gui : CanvasLayer
 		_actionLabel = GetNode<Label>("MarginContainer/Rows/MiddleRow/MiddleTop/CenterContainer/ActionLabel");
 		_perkContainer = GetNode<HBoxContainer>("MarginContainer/Rows/BottomRow/PerkSection");
 
-		_healthBar.Value = 100;
+		_healthBar.MaxValue = 60;
+		_healthBar.Value = 60;
 		_playerMoney.Text = "500";
+	}
+
+	public void SetMaxHealth(int newMaxHealth)
+	{
+		_healthBar.MaxValue = newMaxHealth;
+		_healthBar.Value = newMaxHealth;
 	}
 
 	public void SetHealth(int newHealth)

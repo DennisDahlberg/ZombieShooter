@@ -41,6 +41,7 @@ public partial class PerkManager : Node2D
 			case "Revive":
 				break;
 			case "Juggernog":
+				_player.SetMaxHealth(100);
 				break;
 			case "StaminaUp":
 				_player.Speed *= 1.20f;

@@ -1770,25 +1770,146 @@ Cost = 100
 position = Vector2(-172, -4)
 rotation = 1.5707964
 
-[node name="PerkMachine" type="StaticBody2D" parent="."]
+[node name="PerkMachines" type="Node2D" parent="."]
+
+[node name="StaminaUp" type="StaticBody2D" parent="PerkMachines"]
 position = Vector2(-668, -244)
 script = ExtResource("11_5vvyt")
 Cost = 200
 
-[node name="Sprite" type="Sprite2D" parent="PerkMachine"]
+[node name="Sprite" type="Sprite2D" parent="PerkMachines/StaminaUp"]
 position = Vector2(1.1920929e-07, -2.3841858e-07)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("11_20pc6")
 region_enabled = true
 region_rect = Rect2(1031.1077, 1001.6769, 465.15894, 490.88196)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachine"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/StaminaUp"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_5vvyt")
 
-[node name="BuyArea" type="Area2D" parent="PerkMachine"]
+[node name="BuyArea" type="Area2D" parent="PerkMachines/StaminaUp"]
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachine/BuyArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/StaminaUp/BuyArea"]
+position = Vector2(10, 15)
+shape = SubResource("CircleShape2D_20pc6")
+
+[node name="QuickRevive" type="StaticBody2D" parent="PerkMachines"]
+position = Vector2(-1196, -55)
+script = ExtResource("11_5vvyt")
+PerkName = "QuickRevive"
+
+[node name="Sprite" type="Sprite2D" parent="PerkMachines/QuickRevive"]
+position = Vector2(1.1920929e-07, -2.3841858e-07)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_20pc6")
+region_enabled = true
+region_rect = Rect2(196.93385, 1003.35266, 473.90295, 489.5951)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/QuickRevive"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5vvyt")
+
+[node name="BuyArea" type="Area2D" parent="PerkMachines/QuickRevive"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/QuickRevive/BuyArea"]
+position = Vector2(10, 15)
+shape = SubResource("CircleShape2D_20pc6")
+
+[node name="DoubleTap" type="StaticBody2D" parent="PerkMachines"]
+position = Vector2(-1269, -306)
+script = ExtResource("11_5vvyt")
+Cost = 2000
+PerkName = "DoubleTap"
+
+[node name="Sprite" type="Sprite2D" parent="PerkMachines/DoubleTap"]
+position = Vector2(1.1920929e-07, -2.3841858e-07)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_20pc6")
+region_enabled = true
+region_rect = Rect2(1025.4794, 187.36084, 480.1798, 499.01038)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/DoubleTap"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5vvyt")
+
+[node name="BuyArea" type="Area2D" parent="PerkMachines/DoubleTap"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/DoubleTap/BuyArea"]
+position = Vector2(10, 15)
+shape = SubResource("CircleShape2D_20pc6")
+
+[node name="Juggernog" type="StaticBody2D" parent="PerkMachines"]
+position = Vector2(-247, -246)
+script = ExtResource("11_5vvyt")
+Cost = 200
+PerkName = "Juggernog"
+
+[node name="Sprite" type="Sprite2D" parent="PerkMachines/Juggernog"]
+position = Vector2(1.1920929e-07, -2.3841858e-07)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_20pc6")
+region_enabled = true
+region_rect = Rect2(190.657, 196.77612, 483.31824, 486.45667)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/Juggernog"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5vvyt")
+
+[node name="BuyArea" type="Area2D" parent="PerkMachines/Juggernog"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/Juggernog/BuyArea"]
+position = Vector2(10, 15)
+shape = SubResource("CircleShape2D_20pc6")
+
+[node name="ElectricCherry" type="StaticBody2D" parent="PerkMachines"]
+position = Vector2(516, -189)
+script = ExtResource("11_5vvyt")
+Cost = 4000
+PerkName = "ElectricCherry"
+
+[node name="Sprite" type="Sprite2D" parent="PerkMachines/ElectricCherry"]
+position = Vector2(1.1920929e-07, -2.3841858e-07)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_20pc6")
+region_enabled = true
+region_rect = Rect2(1854.0249, 1012.76794, 486.45654, 495.87195)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/ElectricCherry"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5vvyt")
+
+[node name="BuyArea" type="Area2D" parent="PerkMachines/ElectricCherry"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/ElectricCherry/BuyArea"]
+position = Vector2(10, 15)
+shape = SubResource("CircleShape2D_20pc6")
+
+[node name="SpeedCola" type="StaticBody2D" parent="PerkMachines"]
+position = Vector2(-1159, -533)
+script = ExtResource("11_5vvyt")
+Cost = 3000
+PerkName = "SpeedCola"
+
+[node name="Sprite" type="Sprite2D" parent="PerkMachines/SpeedCola"]
+position = Vector2(1.1920929e-07, -2.3841858e-07)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_20pc6")
+region_enabled = true
+region_rect = Rect2(1854.0225, 184.2258, 483.3181, 502.14883)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/SpeedCola"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5vvyt")
+
+[node name="BuyArea" type="Area2D" parent="PerkMachines/SpeedCola"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/SpeedCola/BuyArea"]
 position = Vector2(10, 15)
 shape = SubResource("CircleShape2D_20pc6")

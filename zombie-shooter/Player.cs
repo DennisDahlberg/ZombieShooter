@@ -9,6 +9,7 @@ public partial class Player : CharacterBody2D
     
     [Signal] public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
     [Signal] public delegate void PlayerHealthChangedEventHandler(int newHealth);
+    [Signal] public delegate void PlayerMaxHealthChangedEventHandler(int newHealth);
     
     
     
@@ -19,7 +20,7 @@ public partial class Player : CharacterBody2D
     private Vector2 _knockbackVelocity = Vector2.Zero;
     private Weapon _weapon;
     
-    private int _currentHealth = 100;
+    private int _currentHealth = 60;
     
     public override void _Ready()
     {
@@ -63,6 +64,12 @@ public partial class Player : CharacterBody2D
         {
             Die();
         }
+    }
+
+    public void SetMaxHealth(int newMaxHealth)
+    {
+        _currentHealth = newMaxHealth;
+        EmitSignalPlayerMaxHealthChanged(_currentHealth);
     }
 
     private void Die()
