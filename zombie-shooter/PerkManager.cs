@@ -38,13 +38,19 @@ public partial class PerkManager : Node2D
 	{
 		switch (perkName)
 		{
-			case "Revive":
+			case "DoubleTap":
+				_player.Weapon.ApplyFireRateMultiplier(0.33f);
+				break;
+			case "QuickRevive":
 				break;
 			case "Juggernog":
 				_player.SetMaxHealth(100);
 				break;
 			case "StaminaUp":
 				_player.Speed *= 1.20f;
+				break;
+			case "SpeedCola":
+				_player.Weapon.ApplyReloadSpeedMultiplayer(2.0f);
 				break;
 		}
 	}

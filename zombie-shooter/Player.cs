@@ -11,20 +11,19 @@ public partial class Player : CharacterBody2D
     [Signal] public delegate void PlayerHealthChangedEventHandler(int newHealth);
     [Signal] public delegate void PlayerMaxHealthChangedEventHandler(int newHealth);
     
-    
-    
     private Marker2D _endOfGun;
     private Marker2D _gunDirection;
     private Timer _attackCooldown;
     private AnimationPlayer _animation;
     private Vector2 _knockbackVelocity = Vector2.Zero;
-    private Weapon _weapon;
+    
+    public Weapon Weapon;
     
     private int _currentHealth = 60;
     
     public override void _Ready()
     {
-        _weapon = GetNode<Weapon>("Weapon");
+        Weapon = GetNode<Weapon>("Weapon");
         
         _animation.Stop();
         GetNode<Sprite2D>("MuzzleFlash").Hide();
@@ -42,10 +41,10 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
 
         if (Input.IsActionJustPressed("shoot"))
-            _weapon.Shoot();
+            Weapon.Shoot();
         
         if (Input.IsActionJustPressed("reload"))
-            _weapon.Reload();
+            Weapon.Reload();
     }
 
     public void ApplyKnockback(Vector2 direction, float strength)

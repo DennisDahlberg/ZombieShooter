@@ -22,6 +22,8 @@ public partial class Weapon : Node2D
 	private Marker2D _gunDirection;
 	private Timer _attackCooldown;
 	private AnimationPlayer _animation;
+	private float _baseCooldown;
+	private float _baseReloadSpeed = 1.0f;
 	
 	public int GetCurrentAmmo() => _currentAmmo;
 	public int GetMaxAmmo() => MaxAmmo;
@@ -32,6 +34,7 @@ public partial class Weapon : Node2D
 		_gunDirection = GetNode<Marker2D>("GunDirection");
 		_attackCooldown = GetNode<Timer>("AttackCooldown");
 		_animation = GetNode<AnimationPlayer>("AnimationPlayer");
+		_baseCooldown = (float)_attackCooldown.WaitTime;
 		
 		_currentAmmo = MaxAmmo;
 		
@@ -72,6 +75,16 @@ public partial class Weapon : Node2D
 	{
 		_currentAmmo = MaxAmmo;
 		EmitSignalAmmoAmountChanged(_currentAmmo);
+	}
+
+	public void ApplyFireRateMultiplier(float increase)
+	{
+		_attackCooldown.WaitTime = _baseCooldown *  increase; 		
+	}
+
+	public void ApplyReloadSpeedMultiplayer(float increase)
+	{
+		_animation.SpeedScale = increase;
 	}
 
 }
