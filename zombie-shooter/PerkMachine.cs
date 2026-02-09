@@ -5,7 +5,7 @@ namespace ZombieShooter;
 public partial class PerkMachine : StaticBody2D
 {
 	[Export] public int Cost = 500;
-	[Export] public string PerkName = "Revive";
+	[Export] public string PerkName = "StaminaUp";
 
 	private Area2D _buyArea;
 	private bool _playerInRange;
@@ -50,6 +50,7 @@ public partial class PerkMachine : StaticBody2D
 		if (GameManager.Instance.SpendMoney(Cost))
 		{
 			GameManager.Instance.UpdateActionLabel("");
+			PerkManager.Instance.AddPerk(PerkName);
 			_isBought = true;
 		}
 		else

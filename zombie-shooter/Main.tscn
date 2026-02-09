@@ -1773,13 +1773,14 @@ rotation = 1.5707964
 [node name="PerkMachine" type="StaticBody2D" parent="."]
 position = Vector2(-668, -244)
 script = ExtResource("11_5vvyt")
+Cost = 200
 
 [node name="Sprite" type="Sprite2D" parent="PerkMachine"]
 position = Vector2(1.1920929e-07, -2.3841858e-07)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("11_20pc6")
 region_enabled = true
-region_rect = Rect2(193.47171, 999.8308, 482.3077, 495.1692)
+region_rect = Rect2(1031.1077, 1001.6769, 465.15894, 490.88196)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachine"]
 position = Vector2(0, 0.5)
