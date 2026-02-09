@@ -98,8 +98,11 @@ public partial class Gui : CanvasLayer
 		return perkId switch
 		{
 			"StaminaUp" => new Rect2(1028, 1017, 471, 484),
-			"StaminaUps" => new Rect2(64, 0, 64, 64),
-			"double_tap" => new Rect2(128, 0, 64, 64),
+			"QuickRevive" => new Rect2(194, 1016, 477, 487),
+			"DoubleTap" => new Rect2(1026, 203, 477, 477),
+			"Juggernog" => new Rect2(194, 203, 477, 477),
+			"SpeedCola" => new Rect2(1860, 203, 477, 477),
+			"ElectricCherry" => new Rect2(1857, 1015, 480, 487),
 			_ => new Rect2(0, 0, 64, 64)
 		};
 	}
