@@ -9,7 +9,6 @@ public partial class PerkMachine : StaticBody2D
 
 	private Area2D _buyArea;
 	private bool _playerInRange;
-	private bool _isBought;
 
 	public override void _Ready()
 	{
@@ -21,7 +20,7 @@ public partial class PerkMachine : StaticBody2D
 	
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body.IsInGroup("Player") && !_isBought)
+		if (body.IsInGroup("Player") && !PerkManager.Instance.IsPerkBought(PerkName))
 		{
 			GameManager.Instance.UpdateActionLabel("Press F to buy perk [" + Cost + "]");
 			_playerInRange = true;
@@ -39,7 +38,7 @@ public partial class PerkMachine : StaticBody2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (_playerInRange && @event.IsActionPressed("buy") && !_isBought)
+		if (_playerInRange && @event.IsActionPressed("buy") && !PerkManager.Instance.IsPerkBought(PerkName))
 		{
 			TryPurchase();
 		}
@@ -51,7 +50,6 @@ public partial class PerkMachine : StaticBody2D
 		{
 			GameManager.Instance.UpdateActionLabel("");
 			PerkManager.Instance.AddPerk(PerkName);
-			_isBought = true;
 		}
 		else
 		{

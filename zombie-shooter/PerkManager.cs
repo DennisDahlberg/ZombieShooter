@@ -19,6 +19,11 @@ public partial class PerkManager : Node2D
 		_player = GetParent<Player>();
 	}
 
+	public bool IsPerkBought(string perkName)
+	{
+		return _activePerks.Contains(perkName);
+	}
+
 	public void AddPerk(string perkName)
 	{
 		if (_activePerks.Contains(perkName))
@@ -79,5 +84,6 @@ public partial class PerkManager : Node2D
 					break;	
 			}
 		}
+		_activePerks.Clear();
 	}
 }
