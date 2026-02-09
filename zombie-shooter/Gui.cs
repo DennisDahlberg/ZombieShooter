@@ -28,7 +28,12 @@ public partial class Gui : CanvasLayer
 	public void SetMaxHealth(int newMaxHealth)
 	{
 		_healthBar.MaxValue = newMaxHealth;
-		_healthBar.Value = newMaxHealth;
+		SetHealth(newMaxHealth);
+	}
+
+	public void ResetHealth()
+	{
+		SetHealth((int)_healthBar.MaxValue);
 	}
 
 	public void SetHealth(int newHealth)
@@ -112,6 +117,14 @@ public partial class Gui : CanvasLayer
 			"ElectricCherry" => new Rect2(1857, 1015, 480, 487),
 			_ => new Rect2(0, 0, 64, 64)
 		};
+	}
+
+	public void ClearPerkIcons()
+	{
+		foreach (Node child in _perkContainer.GetChildren())
+		{
+			child.QueueFree();
+		}
 	}
 	
 }

@@ -87,4 +87,9 @@ public partial class Weapon : Node2D
 		_animation.SpeedScale = increase;
 	}
 
+	public void ResetFireRateMultiplier()
+	{
+		_attackCooldown.WaitTime = _baseReloadSpeed;
+	}
+
 }

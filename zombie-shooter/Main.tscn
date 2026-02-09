@@ -1776,7 +1776,7 @@ Cost = 100
 [node name="StaminaUp" type="StaticBody2D" parent="PerkMachines"]
 position = Vector2(-668, -244)
 script = ExtResource("11_5vvyt")
-Cost = 200
+Cost = 10
 
 [node name="Sprite" type="Sprite2D" parent="PerkMachines/StaminaUp"]
 position = Vector2(1.1920929e-07, -2.3841858e-07)
@@ -1799,6 +1799,7 @@ shape = SubResource("CircleShape2D_20pc6")
 [node name="QuickRevive" type="StaticBody2D" parent="PerkMachines"]
 position = Vector2(-1196, -55)
 script = ExtResource("11_5vvyt")
+Cost = 10
 PerkName = "QuickRevive"
 
 [node name="Sprite" type="Sprite2D" parent="PerkMachines/QuickRevive"]
@@ -1822,7 +1823,7 @@ shape = SubResource("CircleShape2D_20pc6")
 [node name="DoubleTap" type="StaticBody2D" parent="PerkMachines"]
 position = Vector2(-353, -603)
 script = ExtResource("11_5vvyt")
-Cost = 200
+Cost = 10
 PerkName = "DoubleTap"
 
 [node name="Sprite" type="Sprite2D" parent="PerkMachines/DoubleTap"]
@@ -1846,7 +1847,7 @@ shape = SubResource("CircleShape2D_20pc6")
 [node name="Juggernog" type="StaticBody2D" parent="PerkMachines"]
 position = Vector2(330, -319)
 script = ExtResource("11_5vvyt")
-Cost = 200
+Cost = 10
 PerkName = "Juggernog"
 
 [node name="Sprite" type="Sprite2D" parent="PerkMachines/Juggernog"]
@@ -1870,7 +1871,7 @@ shape = SubResource("CircleShape2D_20pc6")
 [node name="ElectricCherry" type="StaticBody2D" parent="PerkMachines"]
 position = Vector2(516, -189)
 script = ExtResource("11_5vvyt")
-Cost = 4000
+Cost = 10
 PerkName = "ElectricCherry"
 
 [node name="Sprite" type="Sprite2D" parent="PerkMachines/ElectricCherry"]
@@ -1894,7 +1895,7 @@ shape = SubResource("CircleShape2D_20pc6")
 [node name="SpeedCola" type="StaticBody2D" parent="PerkMachines"]
 position = Vector2(-251, -246)
 script = ExtResource("11_5vvyt")
-Cost = 200
+Cost = 10
 PerkName = "SpeedCola"
 
 [node name="Sprite" type="Sprite2D" parent="PerkMachines/SpeedCola"]

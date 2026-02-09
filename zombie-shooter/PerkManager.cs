@@ -42,6 +42,7 @@ public partial class PerkManager : Node2D
 				_player.Weapon.ApplyFireRateMultiplier(0.33f);
 				break;
 			case "QuickRevive":
+				_player.HasQuickRevive = true;
 				break;
 			case "Juggernog":
 				_player.SetMaxHealth(100);
@@ -52,6 +53,31 @@ public partial class PerkManager : Node2D
 			case "SpeedCola":
 				_player.Weapon.ApplyReloadSpeedMultiplayer(2.0f);
 				break;
+		}
+	}
+	
+	public void ResetPerks()
+	{
+		foreach (var perk in _activePerks)
+		{
+			switch (perk)
+			{
+				case "DoubleTap":
+					_player.Weapon.ResetFireRateMultiplier();
+					break;
+				case "QuickRevive":
+					_player.HasQuickRevive = false;
+					break;
+				case "Juggernog":
+					_player.SetMaxHealth(60);
+					break;
+				case "StaminaUp":
+					_player.Speed *= 0.80f;
+					break;
+				case "SpeedCola":
+					_player.Weapon.ApplyReloadSpeedMultiplayer(1.0f);
+					break;	
+			}
 		}
 	}
 }

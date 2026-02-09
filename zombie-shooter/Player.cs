@@ -10,6 +10,7 @@ public partial class Player : CharacterBody2D
     [Signal] public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
     [Signal] public delegate void PlayerHealthChangedEventHandler(int newHealth);
     [Signal] public delegate void PlayerMaxHealthChangedEventHandler(int newHealth);
+    [Signal] public delegate void PlayerRevivedEventHandler();
     
     private Marker2D _endOfGun;
     private Marker2D _gunDirection;
@@ -18,6 +19,7 @@ public partial class Player : CharacterBody2D
     private Vector2 _knockbackVelocity = Vector2.Zero;
     
     public Weapon Weapon;
+    public bool HasQuickRevive = false;
     
     private int _currentHealth = 60;
     
@@ -73,7 +75,16 @@ public partial class Player : CharacterBody2D
 
     private void Die()
     {
-        GD.Print("Game Over!");
-        GetTree().ReloadCurrentScene();
+        if (HasQuickRevive)
+        {
+            HasQuickRevive = false;
+            PerkManager.Instance.ResetPerks();
+            _currentHealth = 60;
+            EmitSignalPlayerRevived();
+        }
+        else
+        {
+            GetTree().ReloadCurrentScene();
+        }
     }
 }

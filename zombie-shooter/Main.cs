@@ -22,6 +22,8 @@ public partial class Main : Node2D
 		
 		_player.PlayerHealthChanged += _gui.SetHealth;
 		_player.PlayerMaxHealthChanged += _gui.SetMaxHealth;
+		_player.PlayerRevived += _gui.ResetHealth;
+		_player.PlayerRevived += _gui.ClearPerkIcons;
 
 		GameManager.Instance.MoneyChanged += _gui.SetCurrentMoneyAmount;
 		GameManager.Instance.ActionLabelChanged += _gui.SetActionLabel;
