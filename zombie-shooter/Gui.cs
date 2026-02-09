@@ -9,6 +9,7 @@ public partial class Gui : CanvasLayer
 	private Label _maxAmmo;
 	private Label _playerMoney;
 	private Label _actionLabel;
+	private HBoxContainer _perkContainer;
 
 	public override void _Ready()
 	{
@@ -17,6 +18,7 @@ public partial class Gui : CanvasLayer
 		_maxAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/MaxAmmo");
 		_playerMoney = GetNode<Label>("MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Bottom/PlayerMoney");
 		_actionLabel = GetNode<Label>("MarginContainer/Rows/MiddleRow/MiddleTop/CenterContainer/ActionLabel");
+		_perkContainer = GetNode<HBoxContainer>("MarginContainer/Rows/BottomRow/PerkSection");
 
 		_healthBar.Value = 100;
 		_playerMoney.Text = "500";
@@ -69,6 +71,37 @@ public partial class Gui : CanvasLayer
 	public void SetActionLabel(string newActionLabel)
 	{
 		_actionLabel.Text = newActionLabel;
+	}
+
+	public void AddPerkIcon(string perkName)
+	{
+		TextureRect icon = new TextureRect();
+    
+		var fullSheet = GD.Load<Texture2D>("res://main_assets/perks/perk_icons_tp.png");
+    
+		AtlasTexture atlas = new AtlasTexture();
+		atlas.Atlas = fullSheet;
+    
+		Rect2 region = GetRegionForPerk(perkName); 
+		atlas.Region = region;
+
+		icon.Texture = atlas;
+		icon.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
+		icon.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+		icon.CustomMinimumSize = new Vector2(64, 64);
+    
+		_perkContainer.AddChild(icon);
+	}
+	
+	private Rect2 GetRegionForPerk(string perkId)
+	{
+		return perkId switch
+		{
+			"StaminaUp" => new Rect2(1028, 1017, 471, 484),
+			"StaminaUps" => new Rect2(64, 0, 64, 64),
+			"double_tap" => new Rect2(128, 0, 64, 64),
+			_ => new Rect2(0, 0, 64, 64)
+		};
 	}
 	
 }

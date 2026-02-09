@@ -24,6 +24,8 @@ public partial class Main : Node2D
 
 		GameManager.Instance.MoneyChanged += _gui.SetCurrentMoneyAmount;
 		GameManager.Instance.ActionLabelChanged += _gui.SetActionLabel;
+
+		PerkManager.Instance.PerkAdded += _gui.AddPerkIcon;
 		
 		_gui.SetCurrentAmmo(_weapon.GetCurrentAmmo());
 		_gui.SetMaxAmmo(_weapon.GetMaxAmmo());

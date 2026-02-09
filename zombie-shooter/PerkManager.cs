@@ -6,6 +6,8 @@ using ZombieShooter;
 namespace ZombieShooter;
 public partial class PerkManager : Node2D
 {
+	[Signal] public delegate void PerkAddedEventHandler(string perkName);
+	
 	public static PerkManager Instance { get; private set; }
 	
 	private Player _player;
@@ -27,6 +29,7 @@ public partial class PerkManager : Node2D
 		
 		ApplyPerkEffect(perkName);
 		_activePerks.Add(perkName);
+		EmitSignalPerkAdded(perkName);
 		foreach (var perk in _activePerks)
 			GD.Print(perk);
 	}
