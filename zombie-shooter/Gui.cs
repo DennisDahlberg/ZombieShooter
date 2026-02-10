@@ -9,6 +9,7 @@ public partial class Gui : CanvasLayer
 	private Label _maxAmmo;
 	private Label _playerMoney;
 	private Label _actionLabel;
+	private TextureRect _weaponIcon;
 	private HBoxContainer _perkContainer;
 
 	public override void _Ready()
@@ -19,6 +20,7 @@ public partial class Gui : CanvasLayer
 		_playerMoney = GetNode<Label>("MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Bottom/PlayerMoney");
 		_actionLabel = GetNode<Label>("MarginContainer/Rows/MiddleRow/MiddleTop/CenterContainer/ActionLabel");
 		_perkContainer = GetNode<HBoxContainer>("MarginContainer/Rows/BottomRow/PerkSection");
+		_weaponIcon = GetNode<TextureRect>("MarginContainer/Rows/BottomRow/VBoxContainer/WeaponIcon");
 
 		_healthBar.MaxValue = 60;
 		_healthBar.Value = 60;
@@ -125,6 +127,29 @@ public partial class Gui : CanvasLayer
 		{
 			child.QueueFree();
 		}
+	}
+
+	public void ChangeWeaponIcon(string weaponName)
+	{
+		var fullSheet = GD.Load<Texture2D>("res://main_assets/gun/more_guns.png");
+    
+		AtlasTexture atlas = new AtlasTexture();
+		atlas.Atlas = fullSheet;
+		
+		Rect2 region = GetRegionForWeaponIcon(weaponName); 
+		atlas.Region = region;
+		
+		_weaponIcon.Texture = atlas;
+	}
+
+	private Rect2 GetRegionForWeaponIcon(string weaponName)
+	{
+		return weaponName switch
+		{
+			"AK47" => new Rect2(31, 85, 31, 12),
+			"Pistol" => new Rect2(78, 116, 18, 12),
+			_ => new Rect2(0, 0, 64, 64)
+		};
 	}
 	
 }

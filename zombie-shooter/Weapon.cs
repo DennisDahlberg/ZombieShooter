@@ -1,32 +1,25 @@
 using Godot;
 using System;
+using ZombieShooter.Gun;
 
 namespace ZombieShooter;
 public partial class Weapon : Node2D
 {
-	[Signal]
-	public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
-	
-	[Signal]
-	public delegate void AmmoAmountChangedEventHandler(int newAmmo);
-	
-	[Signal]
-	public delegate void MaxAmmoAmountChangedEventHandler(int newAmmo);
-	
-	[Export] public PackedScene Bullet;
-	[Export] public int MaxAmmo = 5;
+	[Signal] public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
+	[Signal] public delegate void AmmoAmountChangedEventHandler(int newAmmo);
+	[Signal] public delegate void MaxAmmoAmountChangedEventHandler(int newAmmo);
+	[Signal]public delegate void WeaponChangedEventHandler(string weaponName);
 
+	private WeaponData _currentWeaponData;
 	private int _currentAmmo;
 	
 	private Marker2D _endOfGun;
 	private Marker2D _gunDirection;
 	private Timer _attackCooldown;
 	private AnimationPlayer _animation;
-	private float _baseCooldown;
-	private float _baseReloadSpeed = 1.0f;
 	
 	public int GetCurrentAmmo() => _currentAmmo;
-	public int GetMaxAmmo() => MaxAmmo;
+	public int GetMaxAmmo() => _currentWeaponData.MaxAmmo;
 	
 	public override void _Ready()
 	{
@@ -34,17 +27,32 @@ public partial class Weapon : Node2D
 		_gunDirection = GetNode<Marker2D>("GunDirection");
 		_attackCooldown = GetNode<Timer>("AttackCooldown");
 		_animation = GetNode<AnimationPlayer>("AnimationPlayer");
-		_baseCooldown = (float)_attackCooldown.WaitTime;
 		
-		_currentAmmo = MaxAmmo;
+		_currentAmmo = _currentWeaponData.MaxAmmo;
 		
+		_animation.Stop();
+		GetNode<Sprite2D>("MuzzleFlash").Hide();
+	}
+	
+	public void Initialize(WeaponData data)
+	{
+		_currentWeaponData = data;
+		_currentAmmo = data.MaxAmmo;
+        
+		_attackCooldown.WaitTime = data.AttackCooldown;
+		_animation.SpeedScale = data.ReloadCooldown;
+        
+		EmitSignalMaxAmmoAmountChanged(data.MaxAmmo);
+		EmitSignalAmmoAmountChanged(_currentAmmo);
+		EmitSignalWeaponChanged(data.Name);
+        
 		_animation.Stop();
 		GetNode<Sprite2D>("MuzzleFlash").Hide();
 	}
 	
 	public void Shoot()
 	{
-		if (!_attackCooldown.IsStopped() || Bullet == null)
+		if (!_attackCooldown.IsStopped() || _currentWeaponData == null)
 			return;
 		
 		if (_animation.IsPlaying())
@@ -56,7 +64,7 @@ public partial class Weapon : Node2D
 			return;
 		}
 		
-		var bullet = (Bullet)Bullet.Instantiate();
+		var bullet = (Bullet)_currentWeaponData.Bullet.Instantiate();
 		var target = GetGlobalMousePosition();
 		var directionToMouse = _gunDirection.GlobalPosition - _endOfGun.GlobalPosition;
 		EmitSignalPlayerFiredBullet(bullet, _endOfGun.GlobalPosition, directionToMouse);
@@ -73,13 +81,13 @@ public partial class Weapon : Node2D
 
 	public void StopReload()
 	{
-		_currentAmmo = MaxAmmo;
+		_currentAmmo = _currentWeaponData.MaxAmmo;
 		EmitSignalAmmoAmountChanged(_currentAmmo);
 	}
 
 	public void ApplyFireRateMultiplier(float increase)
 	{
-		_attackCooldown.WaitTime = _baseCooldown *  increase; 		
+		_attackCooldown.WaitTime = _currentWeaponData.AttackCooldown * increase; 		
 	}
 
 	public void ApplyReloadSpeedMultiplayer(float increase)
@@ -89,7 +97,7 @@ public partial class Weapon : Node2D
 
 	public void ResetFireRateMultiplier()
 	{
-		_attackCooldown.WaitTime = _baseReloadSpeed;
+		_attackCooldown.WaitTime = _currentWeaponData.AttackCooldown;
 	}
 
 }
