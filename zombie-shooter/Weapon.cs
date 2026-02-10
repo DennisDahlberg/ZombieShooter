@@ -12,6 +12,9 @@ public partial class Weapon : Node2D
 
 	private WeaponData _currentWeaponData;
 	private int _currentAmmo;
+
+	private int _ammoPrimaryWeapon;
+	private int _ammoSecondaryWeapon;
 	
 	private Marker2D _endOfGun;
 	private Marker2D _gunDirection;
@@ -34,13 +37,15 @@ public partial class Weapon : Node2D
 		GetNode<Sprite2D>("MuzzleFlash").Hide();
 	}
 	
-	public void Initialize(WeaponData data)
+	public void Initialize(WeaponData data, int saveAmmo)
 	{
 		_currentWeaponData = data;
-		_currentAmmo = data.MaxAmmo;
+		_currentAmmo = saveAmmo;
         
 		_attackCooldown.WaitTime = data.AttackCooldown;
 		_animation.SpeedScale = data.ReloadCooldown;
+		
+		
         
 		EmitSignalMaxAmmoAmountChanged(data.MaxAmmo);
 		EmitSignalAmmoAmountChanged(_currentAmmo);
