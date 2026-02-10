@@ -14,8 +14,8 @@ public partial class Gui : CanvasLayer
 	public override void _Ready()
 	{
 		_healthBar = GetNode<ProgressBar>("MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Top/HealthBar");
-		_currentAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/CurrentAmmo");
-		_maxAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoSection/MaxAmmo");
+		_currentAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/VBoxContainer/AmmoSection/CurrentAmmo");
+		_maxAmmo = GetNode<Label>("MarginContainer/Rows/BottomRow/VBoxContainer/AmmoSection/MaxAmmo");
 		_playerMoney = GetNode<Label>("MarginContainer/Rows/BottomRow/CenterContainer/BottomLeftSection/Bottom/PlayerMoney");
 		_actionLabel = GetNode<Label>("MarginContainer/Rows/MiddleRow/MiddleTop/CenterContainer/ActionLabel");
 		_perkContainer = GetNode<HBoxContainer>("MarginContainer/Rows/BottomRow/PerkSection");

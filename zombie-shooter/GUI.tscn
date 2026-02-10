@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba3fllv2b6nyj"]
+[gd_scene load_steps=6 format=3 uid="uid://ba3fllv2b6nyj"]
 
 [ext_resource type="Script" uid="uid://b8r04taekbxwx" path="res://Gui.cs" id="1_q7530"]
+[ext_resource type="Texture2D" uid="uid://t3feih7ae8vt" path="res://main_assets/gun/more_guns.png" id="2_0v7bq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctqmo"]
 bg_color = Color(0.12904489, 0.12961754, 0.13053864, 1)
@@ -25,6 +26,10 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1do4"]
+atlas = ExtResource("2_0v7bq")
+region = Rect2(79.577, 117.27543, 15.744949, 10.5824585)
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_q7530")
@@ -112,27 +117,36 @@ text = "1000"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="AmmoSection" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Rows/BottomRow"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Rows/BottomRow/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_l1do4")
+stretch_mode = 5
+
+[node name="AmmoSection" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="CurrentAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoSection"]
+[node name="CurrentAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/VBoxContainer/AmmoSection"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 32
 text = "30"
 
-[node name="AmmoSeparator" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoSection"]
+[node name="AmmoSeparator" type="Label" parent="MarginContainer/Rows/BottomRow/VBoxContainer/AmmoSection"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 32
 text = " / "
 
-[node name="MaxAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoSection"]
+[node name="MaxAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/VBoxContainer/AmmoSection"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
