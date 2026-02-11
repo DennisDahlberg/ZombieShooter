@@ -22,6 +22,7 @@ public partial class Mysterybox : StaticBody2D
 	private bool _isSpinning = false;
 	private bool _isPlayerInRange = false;
 	private bool _isOpen = false;
+	private bool _canPurchase = false;
 
 	public override void _Ready()
 	{
@@ -56,7 +57,7 @@ public partial class Mysterybox : StaticBody2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (_isPlayerInRange && !_isSpinning && @event.IsActionPressed("buy"))
+		if (_isPlayerInRange && !_isOpen && !_isSpinning && @event.IsActionPressed("buy"))
 		{
 			StartSpin();
 		}
@@ -69,6 +70,7 @@ public partial class Mysterybox : StaticBody2D
 		_sprite.Play("open");
 		_gunSprite.Show();
 		_spinTimer.Start(SpinDuration);
+		UpdateLabel();
 	}
 
 	public void OnTimerTimeout()
@@ -79,12 +81,35 @@ public partial class Mysterybox : StaticBody2D
 	private void StopSpin()
 	{
 		_isSpinning = false;
+		_canPurchase = true;
+		
+		UpdateLabel();
 		
 		GetTree().CreateTimer(4.0f).Timeout += () => {
 			_gunSprite.Hide();
 			_sprite.Play("close");
+			_isOpen = false;
+			_canPurchase = false;
+		
+			UpdateLabel();
 		};
-		_isOpen = false;
+	}
+
+	private void UpdateLabel()
+	{
+		GameManager.Instance.UpdateActionLabel("");
+		
+		if (!_isPlayerInRange)
+			return;
+		
+		if (!_isOpen)
+		{
+			GameManager.Instance.UpdateActionLabel($"Press F to open Mystery box [{Cost}]");
+		}
+		if (_canPurchase && _isOpen)
+		{
+			GameManager.Instance.UpdateActionLabel("Press F to pickup gun");
+		}
 	}
 
 	private void OnBodyEntered(Node body)
@@ -93,10 +118,7 @@ public partial class Mysterybox : StaticBody2D
 			return;
 		
 		_isPlayerInRange = true;
-		if (!_isOpen)
-		{
-			GameManager.Instance.UpdateActionLabel($"Press F to open Mystery box [{Cost}]");
-		}
+		UpdateLabel();
 	}
 
 	private void OnBodyExited(Node body)
@@ -104,7 +126,7 @@ public partial class Mysterybox : StaticBody2D
 		if (body is Player)
 		{
 			_isPlayerInRange = false;
-			GameManager.Instance.UpdateActionLabel("");
+			UpdateLabel();
 		}
 	}
 }
