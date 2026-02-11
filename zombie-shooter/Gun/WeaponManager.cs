@@ -33,7 +33,6 @@ public partial class WeaponManager : Node2D
 		_weaponNode = GetParent().GetNode<Weapon>("Weapon"); 
 		
 		_inventorySlots.Add(new WeaponSlot(PrimaryWeapon));
-		_inventorySlots.Add(new WeaponSlot(SecondaryWeapon));
         
 		if (PrimaryWeapon != null)
 		{

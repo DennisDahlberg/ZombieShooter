@@ -8,7 +8,7 @@ public partial class Weapon : Node2D
 	[Signal] public delegate void PlayerFiredBulletEventHandler(Bullet bulletInstance, Vector2 position,  Vector2 direction);
 	[Signal] public delegate void AmmoAmountChangedEventHandler(int newAmmo);
 	[Signal] public delegate void MaxAmmoAmountChangedEventHandler(int newAmmo);
-	[Signal]public delegate void WeaponChangedEventHandler(string weaponName);
+	[Signal]public delegate void WeaponChangedEventHandler(Rect2 weaponRegion);
 
 	private WeaponData _currentWeaponData;
 	private int _currentAmmo;
@@ -49,7 +49,7 @@ public partial class Weapon : Node2D
         
 		EmitSignalMaxAmmoAmountChanged(data.MaxAmmo);
 		EmitSignalAmmoAmountChanged(_currentAmmo);
-		EmitSignalWeaponChanged(data.Name);
+		EmitSignalWeaponChanged(data.IconRegion);
         
 		_animation.Stop();
 		GetNode<Sprite2D>("MuzzleFlash").Hide();

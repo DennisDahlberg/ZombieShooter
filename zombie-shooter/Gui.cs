@@ -129,27 +129,27 @@ public partial class Gui : CanvasLayer
 		}
 	}
 
-	public void ChangeWeaponIcon(string weaponName)
+	public void ChangeWeaponIcon(Rect2 weaponRegion)
 	{
 		var fullSheet = GD.Load<Texture2D>("res://main_assets/gun/more_guns.png");
     
 		AtlasTexture atlas = new AtlasTexture();
 		atlas.Atlas = fullSheet;
-		
-		Rect2 region = GetRegionForWeaponIcon(weaponName); 
+
+		Rect2 region = weaponRegion;
 		atlas.Region = region;
 		
 		_weaponIcon.Texture = atlas;
 	}
 
-	private Rect2 GetRegionForWeaponIcon(string weaponName)
-	{
-		return weaponName switch
-		{
-			"AK47" => new Rect2(31, 85, 31, 12),
-			"Pistol" => new Rect2(78, 116, 18, 12),
-			_ => new Rect2(0, 0, 64, 64)
-		};
-	}
+	// private Rect2 GetRegionForWeaponIcon(string weaponName)
+	// {
+	// 	return weaponName switch
+	// 	{
+	// 		"AK47" => new Rect2(31, 85, 31, 12),
+	// 		"Pistol" => new Rect2(78, 116, 18, 12),
+	// 		_ => new Rect2(0, 0, 64, 64)
+	// 	};
+	// }
 	
 }

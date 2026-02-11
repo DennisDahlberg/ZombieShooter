@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://nxk5uag1nmtc"]
+[gd_scene load_steps=10 format=3 uid="uid://nxk5uag1nmtc"]
 
 [ext_resource type="Script" uid="uid://dsi1k6h3elwjc" path="res://Player.cs" id="1_e80uo"]
 [ext_resource type="PackedScene" uid="uid://bfolynn5bbtj6" path="res://Bullet.tscn" id="2_cxr5p"]
@@ -16,14 +16,9 @@ script = ExtResource("7_dtqjt")
 Name = "Pistol"
 Bullet = ExtResource("2_cxr5p")
 MaxAmmo = 5
-metadata/_custom_type_script = "uid://cbp4sitjqafbg"
-
-[sub_resource type="Resource" id="Resource_wi0c6"]
-script = ExtResource("7_dtqjt")
-Name = "AK47"
-Bullet = ExtResource("2_cxr5p")
-AttackCooldown = 0.02
+CurrentAmmo = 5
 ReloadCooldown = 0.5
+IconRegion = Rect2(78, 116, 18, 12)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -52,4 +47,3 @@ script = ExtResource("5_cxr5p")
 [node name="WeaponManager" type="Node2D" parent="."]
 script = ExtResource("6_tdg3f")
 PrimaryWeapon = SubResource("Resource_5ncpa")
-SecondaryWeapon = SubResource("Resource_wi0c6")

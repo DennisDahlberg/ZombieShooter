@@ -1,0 +1,138 @@
+[gd_scene load_steps=19 format=3 uid="uid://bmc5q6djjmd7f"]
+
+[ext_resource type="Script" uid="uid://bujmgscqryhh6" path="res://Mysterybox.cs" id="1_aikr6"]
+[ext_resource type="Script" uid="uid://cbp4sitjqafbg" path="res://Gun/WeaponData.cs" id="2_4wa5k"]
+[ext_resource type="PackedScene" uid="uid://bfolynn5bbtj6" path="res://Bullet.tscn" id="3_ojhof"]
+[ext_resource type="Texture2D" uid="uid://d1np6202i5myn" path="res://main_assets/gun/mysterybox.png" id="4_6h7em"]
+
+[sub_resource type="Resource" id="Resource_hhcpw"]
+script = ExtResource("2_4wa5k")
+Name = "AK47"
+Bullet = ExtResource("3_ojhof")
+IconRegion = Rect2(31, 85, 31, 12)
+metadata/_custom_type_script = "uid://cbp4sitjqafbg"
+
+[sub_resource type="Resource" id="Resource_mxvw5"]
+script = ExtResource("2_4wa5k")
+Name = "AK47"
+Bullet = ExtResource("3_ojhof")
+IconRegion = Rect2(31, 85, 31, 12)
+metadata/_custom_type_script = "uid://cbp4sitjqafbg"
+
+[sub_resource type="Resource" id="Resource_xrxkg"]
+script = ExtResource("2_4wa5k")
+Name = "Pistol"
+Bullet = ExtResource("3_ojhof")
+IconRegion = Rect2(78, 116, 18, 12)
+metadata/_custom_type_script = "uid://cbp4sitjqafbg"
+
+[sub_resource type="Resource" id="Resource_sqvbp"]
+script = ExtResource("2_4wa5k")
+Name = "Pistol"
+Bullet = ExtResource("3_ojhof")
+AttackCooldown = 0.02
+IconRegion = Rect2(78, 116, 18, 12)
+metadata/_custom_type_script = "uid://cbp4sitjqafbg"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6i3y"]
+atlas = ExtResource("4_6h7em")
+region = Rect2(1900, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjvhd"]
+atlas = ExtResource("4_6h7em")
+region = Rect2(1050, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tuhn"]
+atlas = ExtResource("4_6h7em")
+region = Rect2(200, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2ibq"]
+atlas = ExtResource("4_6h7em")
+region = Rect2(200, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4qnp"]
+atlas = ExtResource("4_6h7em")
+region = Rect2(200, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpfj3"]
+atlas = ExtResource("4_6h7em")
+region = Rect2(1050, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc1dx"]
+atlas = ExtResource("4_6h7em")
+region = Rect2(1900, 170, 700, 1000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjvhd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6i3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjvhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tuhn")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2ibq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4qnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpfj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc1dx")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tuhn"]
+size = Vector2(88, 113)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c6i3y"]
+radius = 145.52663
+
+[node name="Mysterybox" type="StaticBody2D"]
+script = ExtResource("1_aikr6")
+WeaponPool = Array[ExtResource("2_4wa5k")]([SubResource("Resource_hhcpw"), SubResource("Resource_mxvw5"), SubResource("Resource_xrxkg"), SubResource("Resource_sqvbp")])
+Cost = 100
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_kjvhd")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 20.5)
+shape = SubResource("RectangleShape2D_5tuhn")
+
+[node name="BuyArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuyArea"]
+position = Vector2(-7, 17)
+shape = SubResource("CircleShape2D_c6i3y")
+
+[node name="WeaponSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-1, 7)
+
+[node name="SpinTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpinCooldown" type="Timer" parent="."]
+one_shot = true
