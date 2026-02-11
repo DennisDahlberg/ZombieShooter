@@ -12,5 +12,5 @@ public partial class WeaponData : Resource
     [Export] public float AttackCooldown = 0.2f;
     [Export] public float ReloadCooldown = 1.0f;
     [Export] public string ShootAnimation = "muzzle_flash";
-    [Export] public Texture2D Icon;
+    [Export] public Rect2 IconRegion;
 }

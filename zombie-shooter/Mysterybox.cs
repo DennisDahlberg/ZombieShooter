@@ -53,7 +53,7 @@ public partial class Mysterybox : StaticBody2D
 		
 		_spinCooldownTimer.Start(0.2f);
 		int randomIndex = (int)(GD.Randi() % WeaponPool.Count);
-		_gunSprite.Texture = WeaponPool[randomIndex].Icon;
+		UpdateGunSprite(WeaponPool[randomIndex]);
 	}
 
 	public override void _Input(InputEvent @event)
@@ -89,7 +89,7 @@ public partial class Mysterybox : StaticBody2D
 		
 		int finalIndex = (int)(GD.Randi() % WeaponPool.Count);
 		_mysteryWeapon = WeaponPool[finalIndex];
-		_gunSprite.Texture = _mysteryWeapon.Icon;
+		UpdateGunSprite(WeaponPool[finalIndex]);
 		
 		_canPickup = true;
 		UpdateLabel();
@@ -132,6 +132,20 @@ public partial class Mysterybox : StaticBody2D
 		{
 			GameManager.Instance.UpdateActionLabel("Press F to pickup gun");
 		}
+	}
+	
+	private void UpdateGunSprite(WeaponData data)
+	{
+		if (data == null) return;
+
+		var fullSheet = GD.Load<Texture2D>("res://main_assets/gun/more_guns.png");
+
+		AtlasTexture atlas = new AtlasTexture();
+		atlas.Atlas = fullSheet;
+		atlas.Region = data.IconRegion; 
+
+		_gunSprite.Texture = atlas;
+		_gunSprite.TextureFilter = TextureFilterEnum.Nearest; 
 	}
 
 	private void OnBodyEntered(Node body)
