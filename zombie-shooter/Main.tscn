@@ -2198,6 +2198,7 @@ shape = SubResource("CircleShape2D_20pc6")
 position = Vector2(-1004, 605)
 script = ExtResource("13_c2ibq")
 WeaponPool = Array[ExtResource("14_5tuhn")]([SubResource("Resource_hhcpw"), SubResource("Resource_mxvw5"), SubResource("Resource_xrxkg"), SubResource("Resource_sqvbp")])
+Cost = 400
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Mysterybox"]
 scale = Vector2(0.15, 0.15)

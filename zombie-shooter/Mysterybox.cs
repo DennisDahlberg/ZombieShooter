@@ -59,7 +59,7 @@ public partial class Mysterybox : StaticBody2D
 	{
 		if (_isPlayerInRange && !_isOpen && !_isSpinning && @event.IsActionPressed("buy"))
 		{
-			StartSpin();
+			TryPurchase();
 		}
 	}
 
@@ -93,6 +93,14 @@ public partial class Mysterybox : StaticBody2D
 		
 			UpdateLabel();
 		};
+	}
+
+	private void TryPurchase()
+	{
+		if (GameManager.Instance.SpendMoney(Cost))
+		{
+			StartSpin();
+		}
 	}
 
 	private void UpdateLabel()
