@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=29 format=4 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Script" uid="uid://cjp2urggs7cu7" path="res://Main.cs" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ba3fllv2b6nyj" path="res://GUI.tscn" id="10_wkp8b"]
 [ext_resource type="Script" uid="uid://cxcc0mefarvq2" path="res://PerkMachine.cs" id="11_5vvyt"]
 [ext_resource type="Texture2D" uid="uid://bqhrttmepe4n3" path="res://main_assets/perks/perk_machines_tp.png" id="11_20pc6"]
+[ext_resource type="Texture2D" uid="uid://d1np6202i5myn" path="res://main_assets/gun/mysterybox.png" id="13_c6i3y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trn2v"]
 texture = ExtResource("8_03owx")
@@ -1812,6 +1813,50 @@ size = Vector2(98, 101)
 [sub_resource type="CircleShape2D" id="CircleShape2D_20pc6"]
 radius = 97.04638
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2ibq"]
+atlas = ExtResource("13_c6i3y")
+region = Rect2(200, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4qnp"]
+atlas = ExtResource("13_c6i3y")
+region = Rect2(200, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpfj3"]
+atlas = ExtResource("13_c6i3y")
+region = Rect2(1050, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc1dx"]
+atlas = ExtResource("13_c6i3y")
+region = Rect2(1900, 170, 700, 1000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjvhd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2ibq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4qnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpfj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc1dx")
+}],
+"loop": false,
+"name": &"open",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tuhn"]
+size = Vector2(88, 113)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3dxm6")
 
@@ -2093,3 +2138,14 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PerkMachines/SpeedCola/BuyArea"]
 position = Vector2(10, 15)
 shape = SubResource("CircleShape2D_20pc6")
+
+[node name="Mysterybox" type="StaticBody2D" parent="."]
+position = Vector2(-2974, -451)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mysterybox"]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_kjvhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mysterybox"]
+position = Vector2(-1, 20.5)
+shape = SubResource("RectangleShape2D_5tuhn")
