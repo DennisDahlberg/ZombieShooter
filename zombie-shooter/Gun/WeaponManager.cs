@@ -62,8 +62,12 @@ public partial class WeaponManager : Node2D
 
 	public void AddWeaponToInventory(WeaponData weaponData)
 	{
+		_inventorySlots[_weaponIndex].CurrentAmmo = _weaponNode.GetCurrentAmmo();
 		if (_inventorySlots.Count <= 1)
+		{
 			_inventorySlots.Add(new WeaponSlot(weaponData));
+			_weaponIndex = 1;
+		}
 		else
 			_inventorySlots[_weaponIndex] = new WeaponSlot(weaponData);
 		

@@ -107,6 +107,12 @@ public partial class Mysterybox : StaticBody2D
 	private void PickupWeapon()
 	{
 		WeaponManager.Instance.AddWeaponToInventory(_mysteryWeapon);
+		_gunSprite.Hide();
+		_sprite.Play("close");
+		_isOpen = false;
+		_canPickup = false;
+		_mysteryWeapon = null;
+		UpdateLabel();
 	}
 
 	private void TryPurchase()
