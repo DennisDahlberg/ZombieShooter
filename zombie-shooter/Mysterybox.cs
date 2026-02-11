@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 using Godot.Collections;
 using ZombieShooter.Gun;
@@ -20,6 +21,7 @@ public partial class Mysterybox : StaticBody2D
 
 	private bool _isSpinning = false;
 	private bool _isPlayerInRange = false;
+	private bool _isOpen = false;
 
 	public override void _Ready()
 	{
@@ -63,6 +65,7 @@ public partial class Mysterybox : StaticBody2D
 	private void StartSpin()
 	{
 		_isSpinning = true;
+		_isOpen = true;
 		_sprite.Play("open");
 		_gunSprite.Show();
 		_spinTimer.Start(SpinDuration);
@@ -70,20 +73,29 @@ public partial class Mysterybox : StaticBody2D
 
 	public void OnTimerTimeout()
 	{
-		GD.Print("Spin timer stopped");
 		StopSpin();
 	}
 
 	private void StopSpin()
 	{
 		_isSpinning = false;
+		
+		GetTree().CreateTimer(4.0f).Timeout += () => {
+			_gunSprite.Hide();
+			_sprite.Play("close");
+		};
+		_isOpen = false;
 	}
 
 	private void OnBodyEntered(Node body)
 	{
-		if (body is Player)
+		if (body is not Player)
+			return;
+		
+		_isPlayerInRange = true;
+		if (!_isOpen)
 		{
-			_isPlayerInRange = true;
+			GameManager.Instance.UpdateActionLabel($"Press F to open Mystery box [{Cost}]");
 		}
 	}
 
@@ -92,6 +104,7 @@ public partial class Mysterybox : StaticBody2D
 		if (body is Player)
 		{
 			_isPlayerInRange = false;
+			GameManager.Instance.UpdateActionLabel("");
 		}
 	}
 }
