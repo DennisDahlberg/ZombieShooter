@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=33 format=4 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Script" uid="uid://cjp2urggs7cu7" path="res://Main.cs" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
@@ -1813,6 +1813,18 @@ size = Vector2(98, 101)
 [sub_resource type="CircleShape2D" id="CircleShape2D_20pc6"]
 radius = 97.04638
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6i3y"]
+atlas = ExtResource("13_c6i3y")
+region = Rect2(1900, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjvhd"]
+atlas = ExtResource("13_c6i3y")
+region = Rect2(1050, 170, 700, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tuhn"]
+atlas = ExtResource("13_c6i3y")
+region = Rect2(200, 170, 700, 1000)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c2ibq"]
 atlas = ExtResource("13_c6i3y")
 region = Rect2(200, 170, 700, 1000)
@@ -1833,6 +1845,20 @@ region = Rect2(1900, 170, 700, 1000)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_c6i3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjvhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tuhn")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_c2ibq")
 }],
 "loop": true,
@@ -1851,11 +1877,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"open",
-"speed": 3.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5tuhn"]
 size = Vector2(88, 113)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c6i3y"]
+radius = 145.52663
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3dxm6")
@@ -2140,12 +2169,27 @@ position = Vector2(10, 15)
 shape = SubResource("CircleShape2D_20pc6")
 
 [node name="Mysterybox" type="StaticBody2D" parent="."]
-position = Vector2(-2974, -451)
+position = Vector2(-2993, -445)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Mysterybox"]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_kjvhd")
+animation = &"open"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mysterybox"]
 position = Vector2(-1, 20.5)
 shape = SubResource("RectangleShape2D_5tuhn")
+
+[node name="BuyArea" type="Area2D" parent="Mysterybox"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mysterybox/BuyArea"]
+position = Vector2(-2, 19)
+shape = SubResource("CircleShape2D_c6i3y")
+
+[node name="WeaponSpawnPoint" type="Marker2D" parent="Mysterybox"]
+position = Vector2(-1, 7)
+
+[node name="SpinTimer" type="Timer" parent="Mysterybox"]
+one_shot = true
