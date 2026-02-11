@@ -5,6 +5,8 @@ using System.Collections.Generic;
 namespace ZombieShooter.Gun;
 public partial class WeaponManager : Node2D
 {
+	public static WeaponManager Instance { get; private set; }
+
 	public class WeaponSlot
 	{
 		public WeaponData Data;
@@ -27,6 +29,7 @@ public partial class WeaponManager : Node2D
 
 	public override void _Ready()
 	{
+		Instance = this;
 		_weaponNode = GetParent().GetNode<Weapon>("Weapon"); 
 		
 		_inventorySlots.Add(new WeaponSlot(PrimaryWeapon));
