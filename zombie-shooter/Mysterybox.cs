@@ -31,6 +31,7 @@ public partial class Mysterybox : StaticBody2D
 
 		_gunSprite = new Sprite2D();
 		_gunSprite.ZIndex = 1000;
+		_gunSprite.Scale = new Vector2(2.0f, 2.0f);
 		_spawnPoint.AddChild(_gunSprite);
 		_gunSprite.Hide();
 		
