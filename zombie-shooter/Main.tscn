@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=43 format=4 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Script" uid="uid://cjp2urggs7cu7" path="res://Main.cs" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
@@ -12,7 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://ba3fllv2b6nyj" path="res://GUI.tscn" id="10_wkp8b"]
 [ext_resource type="Script" uid="uid://cxcc0mefarvq2" path="res://PerkMachine.cs" id="11_5vvyt"]
 [ext_resource type="Texture2D" uid="uid://bqhrttmepe4n3" path="res://main_assets/perks/perk_machines_tp.png" id="11_20pc6"]
+[ext_resource type="Script" uid="uid://bujmgscqryhh6" path="res://Mysterybox.cs" id="13_c2ibq"]
 [ext_resource type="Texture2D" uid="uid://d1np6202i5myn" path="res://main_assets/gun/mysterybox.png" id="13_c6i3y"]
+[ext_resource type="Script" uid="uid://cbp4sitjqafbg" path="res://Gun/WeaponData.cs" id="14_5tuhn"]
+[ext_resource type="Texture2D" uid="uid://cv1k1q03pb2qx" path="res://main_assets/gun/piecemarker.png" id="15_2gh4u"]
+[ext_resource type="Texture2D" uid="uid://6h3nqcpooago" path="res://main_assets/gun/hitpro.png" id="16_devvj"]
+[ext_resource type="Texture2D" uid="uid://daiigendjqvpw" path="res://main_assets/gun/gh55b.png" id="17_3b0ty"]
+[ext_resource type="Texture2D" uid="uid://c0rk7bx6335y" path="res://main_assets/gun/sg1.png" id="18_bg4s2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trn2v"]
 texture = ExtResource("8_03owx")
@@ -1813,6 +1819,26 @@ size = Vector2(98, 101)
 [sub_resource type="CircleShape2D" id="CircleShape2D_20pc6"]
 radius = 97.04638
 
+[sub_resource type="Resource" id="Resource_hhcpw"]
+script = ExtResource("14_5tuhn")
+Icon = ExtResource("15_2gh4u")
+metadata/_custom_type_script = "uid://cbp4sitjqafbg"
+
+[sub_resource type="Resource" id="Resource_mxvw5"]
+script = ExtResource("14_5tuhn")
+Icon = ExtResource("16_devvj")
+metadata/_custom_type_script = "uid://cbp4sitjqafbg"
+
+[sub_resource type="Resource" id="Resource_xrxkg"]
+script = ExtResource("14_5tuhn")
+Icon = ExtResource("17_3b0ty")
+metadata/_custom_type_script = "uid://cbp4sitjqafbg"
+
+[sub_resource type="Resource" id="Resource_sqvbp"]
+script = ExtResource("14_5tuhn")
+Icon = ExtResource("18_bg4s2")
+metadata/_custom_type_script = "uid://cbp4sitjqafbg"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6i3y"]
 atlas = ExtResource("13_c6i3y")
 region = Rect2(1900, 170, 700, 1000)
@@ -1862,7 +1888,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_c2ibq")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -2169,20 +2195,21 @@ position = Vector2(10, 15)
 shape = SubResource("CircleShape2D_20pc6")
 
 [node name="Mysterybox" type="StaticBody2D" parent="."]
-position = Vector2(-2993, -445)
+position = Vector2(-1004, 605)
+script = ExtResource("13_c2ibq")
+WeaponPool = Array[ExtResource("14_5tuhn")]([SubResource("Resource_hhcpw"), SubResource("Resource_mxvw5"), SubResource("Resource_xrxkg"), SubResource("Resource_sqvbp")])
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Mysterybox"]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_kjvhd")
-animation = &"open"
-frame = 2
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mysterybox"]
 position = Vector2(-1, 20.5)
 shape = SubResource("RectangleShape2D_5tuhn")
 
 [node name="BuyArea" type="Area2D" parent="Mysterybox"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mysterybox/BuyArea"]
 position = Vector2(-2, 19)
@@ -2193,3 +2220,8 @@ position = Vector2(-1, 7)
 
 [node name="SpinTimer" type="Timer" parent="Mysterybox"]
 one_shot = true
+
+[node name="SpinCooldown" type="Timer" parent="Mysterybox"]
+one_shot = true
+
+[connection signal="timeout" from="Mysterybox/SpinTimer" to="." method="OnTimerTimeout"]
