@@ -51,11 +51,23 @@ public partial class WeaponManager : Node2D
 
 	private void ToggleWeapon()
 	{
+		if (_inventorySlots.Count <= 1) return;
+		
 		_inventorySlots[_weaponIndex].CurrentAmmo = _weaponNode.GetCurrentAmmo();
 
 		_weaponIndex = _weaponIndex == 0 ? 1 : 0;
 		var weapon = _inventorySlots[_weaponIndex];
 		
 		_weaponNode.Initialize(weapon.Data, weapon.CurrentAmmo);
+	}
+
+	public void AddWeaponToInventory(WeaponData weaponData)
+	{
+		if (_inventorySlots.Count <= 1)
+			_inventorySlots.Add(new WeaponSlot(weaponData));
+		else
+			_inventorySlots[_weaponIndex] = new WeaponSlot(weaponData);
+		
+		_weaponNode.Initialize(weaponData, weaponData.MaxAmmo);
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://egj2byx1d3cw"]
+[gd_scene load_steps=44 format=4 uid="uid://egj2byx1d3cw"]
 
 [ext_resource type="Script" uid="uid://cjp2urggs7cu7" path="res://Main.cs" id="1_3dxm6"]
 [ext_resource type="Texture2D" uid="uid://mc3hfsfghx1s" path="res://main_assets/PNG/Tiles/tile_01.png" id="1_glv2v"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://d1np6202i5myn" path="res://main_assets/gun/mysterybox.png" id="13_c6i3y"]
 [ext_resource type="Script" uid="uid://cbp4sitjqafbg" path="res://Gun/WeaponData.cs" id="14_5tuhn"]
 [ext_resource type="Texture2D" uid="uid://cv1k1q03pb2qx" path="res://main_assets/gun/piecemarker.png" id="15_2gh4u"]
+[ext_resource type="PackedScene" uid="uid://bfolynn5bbtj6" path="res://Bullet.tscn" id="15_devvj"]
 [ext_resource type="Texture2D" uid="uid://6h3nqcpooago" path="res://main_assets/gun/hitpro.png" id="16_devvj"]
 [ext_resource type="Texture2D" uid="uid://daiigendjqvpw" path="res://main_assets/gun/gh55b.png" id="17_3b0ty"]
 [ext_resource type="Texture2D" uid="uid://c0rk7bx6335y" path="res://main_assets/gun/sg1.png" id="18_bg4s2"]
@@ -1821,21 +1822,26 @@ radius = 97.04638
 
 [sub_resource type="Resource" id="Resource_hhcpw"]
 script = ExtResource("14_5tuhn")
+Bullet = ExtResource("15_devvj")
 Icon = ExtResource("15_2gh4u")
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
 [sub_resource type="Resource" id="Resource_mxvw5"]
 script = ExtResource("14_5tuhn")
+Bullet = ExtResource("15_devvj")
 Icon = ExtResource("16_devvj")
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
 [sub_resource type="Resource" id="Resource_xrxkg"]
 script = ExtResource("14_5tuhn")
+Bullet = ExtResource("15_devvj")
 Icon = ExtResource("17_3b0ty")
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
 [sub_resource type="Resource" id="Resource_sqvbp"]
 script = ExtResource("14_5tuhn")
+Bullet = ExtResource("15_devvj")
+AttackCooldown = 0.02
 Icon = ExtResource("18_bg4s2")
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
@@ -2198,7 +2204,7 @@ shape = SubResource("CircleShape2D_20pc6")
 position = Vector2(-1004, 605)
 script = ExtResource("13_c2ibq")
 WeaponPool = Array[ExtResource("14_5tuhn")]([SubResource("Resource_hhcpw"), SubResource("Resource_mxvw5"), SubResource("Resource_xrxkg"), SubResource("Resource_sqvbp")])
-Cost = 400
+Cost = 100
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Mysterybox"]
 scale = Vector2(0.15, 0.15)
