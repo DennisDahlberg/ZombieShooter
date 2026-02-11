@@ -15,9 +15,9 @@ size = Vector2(40, 45)
 script = ExtResource("7_dtqjt")
 Name = "Pistol"
 Bullet = ExtResource("2_cxr5p")
-MaxAmmo = 5
-CurrentAmmo = 5
-ReloadCooldown = 0.5
+MaxAmmo = 6
+CurrentAmmo = 6
+AttackCooldown = 0.6
 IconRegion = Rect2(78, 116, 18, 12)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 

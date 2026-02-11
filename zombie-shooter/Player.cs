@@ -42,7 +42,7 @@ public partial class Player : CharacterBody2D
 
         MoveAndSlide();
 
-        if (Input.IsActionJustPressed("shoot"))
+        if (Input.IsActionPressed("shoot"))
             Weapon.Shoot();
         
         if (Input.IsActionJustPressed("reload"))

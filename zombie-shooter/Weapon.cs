@@ -15,6 +15,7 @@ public partial class Weapon : Node2D
 
 	private int _ammoPrimaryWeapon;
 	private int _ammoSecondaryWeapon;
+	private bool _isReloading;
 	
 	private Marker2D _endOfGun;
 	private Marker2D _gunDirection;
@@ -60,7 +61,7 @@ public partial class Weapon : Node2D
 		if (!_attackCooldown.IsStopped() || _currentWeaponData == null)
 			return;
 		
-		if (_animation.IsPlaying())
+		if (_isReloading)
 			return;
 		
 		if (_currentAmmo <= 0)
@@ -82,12 +83,14 @@ public partial class Weapon : Node2D
 	public void Reload()
 	{
 		_animation.Play("reload");
+		_isReloading = true;
 	}
 
 	public void StopReload()
 	{
 		_currentAmmo = _currentWeaponData.MaxAmmo;
 		EmitSignalAmmoAmountChanged(_currentAmmo);
+		_isReloading = false;
 	}
 
 	public void ApplyFireRateMultiplier(float increase)
