@@ -100,6 +100,15 @@ public partial class Mysterybox : StaticBody2D
 		int finalIndex = (int)(GD.Randi() % WeaponPool.Count);
 		_mysteryWeapon = WeaponPool[finalIndex];
 		UpdateGunSprite(WeaponPool[finalIndex]);
+
+		var floatTween = CreateTween().SetLoops();
+		floatTween.TweenProperty(_gunSprite, "position:y", -5.0f, 0.8f)
+			.AsRelative()
+			.SetTrans(Tween.TransitionType.Sine);
+		floatTween.TweenProperty(_gunSprite, "position:y", 5.0f, 0.8f)
+			.AsRelative()
+			.SetTrans(Tween.TransitionType.Sine);
+		
 		
 		_canPickup = true;
 		UpdateLabel();
