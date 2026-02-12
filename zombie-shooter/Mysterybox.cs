@@ -116,26 +116,42 @@ public partial class Mysterybox : StaticBody2D
 		GetTree().CreateTimer(4.0f).Timeout += () => {
 			if (_mysteryWeapon is not null)
 			{
-				_gunSprite.Hide();
-				_sprite.Play("close");
-				_isOpen = false;
-				_canPickup = false;
-				_mysteryWeapon = null;
-				UpdateLabel();	
+				var exitTween = CreateTween().SetParallel();
+				exitTween.TweenProperty(_gunSprite, "modulate:a", 0.0f, 0.4f);
+				exitTween.TweenProperty(_gunSprite, "scale", Vector2.Zero, 0.4f);
+
+				exitTween.Finished += () =>
+				{
+					_gunSprite.Hide();
+					_gunSprite.Modulate = new Color(1, 1, 1, 1);
+					_sprite.Play("close");
+					_isOpen = false;
+					_canPickup = false;
+					_mysteryWeapon = null;
+					UpdateLabel();	
+				};
 			}
-			
 		};
 	}
 
 	private void PickupWeapon()
 	{
 		WeaponManager.Instance.AddWeaponToInventory(_mysteryWeapon);
-		_gunSprite.Hide();
-		_sprite.Play("close");
-		_isOpen = false;
-		_canPickup = false;
-		_mysteryWeapon = null;
-		UpdateLabel();
+
+		var pickupTween = CreateTween();
+		pickupTween.TweenProperty(_gunSprite, "scale", new Vector2(3.0f, 3.0f), 0.1f);
+		pickupTween.Parallel().TweenProperty(_gunSprite, "modulate:a", 0.0f, 0.1f);
+
+		pickupTween.Finished += () =>
+		{
+			_gunSprite.Hide();
+			_gunSprite.Modulate = new Color(1, 1, 1, 1);
+			_sprite.Play("close");
+			_isOpen = false;
+			_canPickup = false;
+			_mysteryWeapon = null;
+			UpdateLabel();
+		};
 	}
 
 	private void TryPurchase()
