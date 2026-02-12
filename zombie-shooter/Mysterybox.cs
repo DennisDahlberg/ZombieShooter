@@ -74,6 +74,16 @@ public partial class Mysterybox : StaticBody2D
 		_isOpen = true;
 		_sprite.Play("open");
 		_gunSprite.Show();
+
+		_gunSprite.Scale = Vector2.Zero;
+		_gunSprite.Position = new Vector2(0f, 10f);
+
+		var tween = CreateTween()
+			.SetTrans(Tween.TransitionType.Back)
+			.SetEase(Tween.EaseType.Out);
+		tween.TweenProperty(_gunSprite, "scale", new Vector2(2.0f, 2.0f), 0.3f);
+		tween.Parallel().TweenProperty(_gunSprite, "position", Vector2.Zero, 0.3f);
+		
 		_spinTimer.Start(SpinDuration);
 		UpdateLabel();
 	}
@@ -95,12 +105,16 @@ public partial class Mysterybox : StaticBody2D
 		UpdateLabel();
 		
 		GetTree().CreateTimer(4.0f).Timeout += () => {
-			_gunSprite.Hide();
-			_sprite.Play("close");
-			_isOpen = false;
-			_canPickup = false;
-			_mysteryWeapon = null;
-			UpdateLabel();
+			if (_mysteryWeapon is not null)
+			{
+				_gunSprite.Hide();
+				_sprite.Play("close");
+				_isOpen = false;
+				_canPickup = false;
+				_mysteryWeapon = null;
+				UpdateLabel();	
+			}
+			
 		};
 	}
 
