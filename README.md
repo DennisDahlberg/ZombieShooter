@@ -2,6 +2,8 @@
 
 A 2D top-down survival shooter built with **Godot 4** and **C# (.NET 8)**. This project is a tribute to classic zombie survival games, featuring iconic mechanics like perks and mystery boxes.
 
+![Adobe Express - Screencast From 2026-03-23 11-14-47](https://github.com/user-attachments/assets/cfbb7200-aeec-433b-9978-db42e7f4b191)
+
 ---
 
 ## 🧟 Project Overview
