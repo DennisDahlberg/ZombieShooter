@@ -73,9 +73,4 @@ public partial class WeaponManager : Node2D
 		
 		_weaponNode.Initialize(weaponData, weaponData.MaxAmmo);
 	}
-
-	public int GetEquippedWeaponDamage()
-	{
-		return _inventorySlots[_weaponIndex].Data.Damage;
-	}
 }

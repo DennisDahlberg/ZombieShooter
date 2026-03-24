@@ -50,6 +50,7 @@ public partial class Zombie : CharacterBody2D
 
 	public void HandleHitByBullet(int weaponDamage)
 	{
+		GD.Print(weaponDamage);
 		_health -= weaponDamage;
 		if (_health <= 0)
 		{

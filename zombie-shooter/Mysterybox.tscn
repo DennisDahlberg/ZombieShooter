@@ -9,6 +9,7 @@
 script = ExtResource("2_4wa5k")
 Name = "AK47"
 Bullet = ExtResource("3_ojhof")
+Damage = 100
 IconRegion = Rect2(31, 85, 31, 12)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
@@ -16,6 +17,7 @@ metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 script = ExtResource("2_4wa5k")
 Name = "AK47"
 Bullet = ExtResource("3_ojhof")
+Damage = 100
 IconRegion = Rect2(31, 85, 31, 12)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
@@ -23,6 +25,7 @@ metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 script = ExtResource("2_4wa5k")
 Name = "Pistol"
 Bullet = ExtResource("3_ojhof")
+Damage = 100
 IconRegion = Rect2(78, 116, 18, 12)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
@@ -31,6 +34,7 @@ script = ExtResource("2_4wa5k")
 Name = "Pistol"
 Bullet = ExtResource("3_ojhof")
 AttackCooldown = 0.02
+Damage = 100
 IconRegion = Rect2(78, 116, 18, 12)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 

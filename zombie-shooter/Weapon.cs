@@ -24,6 +24,7 @@ public partial class Weapon : Node2D
 	
 	public int GetCurrentAmmo() => _currentAmmo;
 	public int GetMaxAmmo() => _currentWeaponData.MaxAmmo;
+	public int GetDamage() => _currentWeaponData.Damage;
 	
 	public override void _Ready()
 	{
@@ -71,6 +72,8 @@ public partial class Weapon : Node2D
 		}
 		
 		var bullet = (Bullet)_currentWeaponData.Bullet.Instantiate();
+		bullet.Damage =  GetDamage();
+		
 		var target = GetGlobalMousePosition();
 		var directionToMouse = _gunDirection.GlobalPosition - _endOfGun.GlobalPosition;
 		EmitSignalPlayerFiredBullet(bullet, _endOfGun.GlobalPosition, directionToMouse);

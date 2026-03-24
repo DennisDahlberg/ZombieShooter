@@ -1820,6 +1820,7 @@ script = ExtResource("14_5tuhn")
 Name = "AK47"
 Bullet = ExtResource("15_devvj")
 ReloadCooldown = 0.8
+Damage = 30
 IconRegion = Rect2(31, 85, 31, 12)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
@@ -1839,6 +1840,7 @@ MaxAmmo = 80
 CurrentAmmo = 80
 AttackCooldown = 0.11
 ReloadCooldown = 0.2
+Damage = 25
 IconRegion = Rect2(-1.2173691, 66.99949, 37.29603, 13.918442)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 
@@ -1849,6 +1851,7 @@ Bullet = ExtResource("15_devvj")
 MaxAmmo = 20
 AttackCooldown = 0.1
 ReloadCooldown = 1.5
+Damage = 22
 IconRegion = Rect2(30.51254, 99.37724, 23.242449, 13.648178)
 metadata/_custom_type_script = "uid://cbp4sitjqafbg"
 

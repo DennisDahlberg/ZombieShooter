@@ -6,6 +6,7 @@ namespace ZombieShooter;
 public partial class Bullet : Area2D
 {
 	[Export] public float Speed = 600f;
+	public int Damage = 20;
 	
 	private Vector2 _direction = Vector2.Zero;
 	private Timer _killTimer;
@@ -39,7 +40,7 @@ public partial class Bullet : Area2D
 	public void OnBulletBodyEntered(Node body)
 	{
 		if (body.HasMethod("HandleHitByBullet"))
-			body.Call("HandleHitByBullet", WeaponManager.Instance.GetEquippedWeaponDamage());
+			body.Call("HandleHitByBullet", Damage);
 		
 		QueueFree();
 	}
