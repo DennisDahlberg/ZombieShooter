@@ -48,9 +48,9 @@ public partial class Zombie : CharacterBody2D
 		}
 	}
 
-	public void HandleHitByBullet()
+	public void HandleHitByBullet(int weaponDamage)
 	{
-		_health -= 20;
+		_health -= weaponDamage;
 		if (_health <= 0)
 		{
 			GameManager.Instance.AddMoney(50);

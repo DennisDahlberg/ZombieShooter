@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using ZombieShooter.Gun;
 
 namespace ZombieShooter;
 public partial class Bullet : Area2D
@@ -38,7 +39,7 @@ public partial class Bullet : Area2D
 	public void OnBulletBodyEntered(Node body)
 	{
 		if (body.HasMethod("HandleHitByBullet"))
-			body.Call("HandleHitByBullet");
+			body.Call("HandleHitByBullet", WeaponManager.Instance.GetEquippedWeaponDamage());
 		
 		QueueFree();
 	}
